@@ -1,0 +1,120 @@
+#lancar-gasto {
+    background-color: white;
+}
+
+#lancamento {
+    width: 300px;
+}
+
+#lancamento>p {
+    margin-top: 10px;
+}
+
+#lancamento>button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#historico {
+    margin-top: 30px;
+}
+
+.lancado {
+    margin-top: 10px;
+}
+
+.lancado>button {
+    margin-left: 0.3rem;
+}
+
+#btn-lancar {
+    padding: 0.3rem 0.6rem;
+    background-color: var(--cor2);
+    color: white;
+    border: 1px solid var(--cor7);
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-lancar:hover,
+.icon:hover {
+    background-color: var(--cor8);
+    transition: 0.2s;
+}
+
+#btn-lancar:active,
+.icon:active {
+    background-color: var(--cor8);
+    transition: 0.2s;
+    font-size: 0.9rem;
+}
+
+input,
+select {
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    color: var(--cor9);
+    width: 200px;
+    background-color: var(--cor4);
+    float: right;
+}
+
+select {
+    width: 208px;
+}
+
+.tabela {
+    width: 250px;
+    border-collapse: collapse;
+}
+
+.tabela>caption {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.tabela>thead {
+    background-color: var(--cor2);
+    color: white;
+}
+
+td,
+th {
+    border: 1px solid var(--cor4);
+    padding: 5px 10px;
+}
+
+.tabela>tbody>tr:nth-child(even) {
+    background-color: aliceblue;
+}
+
+.tabela>tfoot {
+    font-weight: bold;
+    color: white;
+    background-color: var(--cor2);
+}
+
+.icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--cor2);
+    color: white;
+    border: 1px solid var(--cor7);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+i {
+    pointer-events: none;
+}
+
+.link {
+    color: white;
+}
