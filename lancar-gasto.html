@@ -1,22 +1,3 @@
-<?php
-session_start();
-include_once('config/conexao.php');
-//print_r($_SESSION);
-if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)) {
-    //Caso o usuário não tenha feito o login, não acessará
-    unset($_SESSION['email']); //Para destruir a informação e não entrar sem acesso
-    unset($_SESSION['senha']);
-    header('Location: index.php');
-} else {
-    //Se estiver feito login, acesso permitido
-    $logado = $_SESSION['email'];
-}
-
-$sql = "SELECT * FROM lancamentos ORDER BY data DESC";
-$result = $conexao->query($sql);
-//print_r($result);
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -28,7 +9,6 @@ $result = $conexao->query($sql);
     <link rel="stylesheet" href="style/style-geral.css">
     <link rel="stylesheet" href="style/style-lancar-gasto.css">
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="script/script-lancar-gasto.js" defer></script>
 </head>
 
@@ -36,10 +16,6 @@ $result = $conexao->query($sql);
     <header>
         <aside id="barra-login">
             <div id="saudacao">
-                <?php
-                echo "<h3>Olá, $logado!</h3>";
-                //print_r($_SESSION);
-                ?>
             </div>
             <div id="sair">
                 <a href="config/sair.php">Sair</a>
@@ -76,33 +52,6 @@ $result = $conexao->query($sql);
             <div id="historico">
                 <form id="lancados">
                     <h3>Histórico</h3>
-                    <div class="lancado">
-                        <table class="tabela">
-                            <thead>
-                                <tr id="tr_tabela">
-                                    <th>Data</th>
-                                    <th>Descrição</th>
-                                    <th>Categoria</th>
-                                    <th>Valor</th>
-                                    <th>..............</th>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                while ($user_data = mysqli_fetch_assoc($result)) {
-                                    echo "<tr>";
-                                    echo "<td>" . $user_data['data'] . "</td>";
-                                    echo "<td>" . $user_data['descricao'] . "</td>";
-                                    echo "<td>" . $user_data['categoria'] . "</td>";
-                                    echo "<td>" . $user_data['valor'] . "</td>";
-                                    echo "<td><button class='icon'><a href='edit.php?=$user_data[id]' class='link'><i class='fa-solid fa-pen'></i></a></a></button><button class='icon'><i class='fa-solid fa-delete-left'></i></button></td>";
-                                    echo "<tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
                 </form>
             </div>
         </main>
