@@ -12,24 +12,29 @@
 </head>
 
 <body>
-    <main>
-        <section>
+    <div id="cointainer-login">
+        <header id="cabecalho">
             <img src="imagens/elenchos-logotipo.png" alt="Elenchos" id="logotipo">
             <p>Controle de finanças pessoais</p>
-        </section>
-        <form>
+        </header>
+
+        <form id="inputs">
             <p>Login</p>
-            <input type="text" name="email" placeholder=" Email" id="login">
-            <input type="password" name="senha" placeholder=" Senha" id="senha">
+            <input type="text" placeholder=" Email" class="input" id="email" required>
+            <input type="password" placeholder=" Senha" class="input" id="senha" required>
             <input type="submit" class="botoes" id="entrar" value="Entrar" onclick="logar()"></input>
         </form>
+
         <div id="msg"></div>
+
         <hr>
+
         <section id="nova-conta">
             <p>Ainda não tem login?</p>
             <a href="nova-conta.html"><button class="botoes" id="novaconta">Criar nova conta</button></a>
         </section>
-    </main>
+    </div>
+
     <footer>
         <p>&copy; 2022 - <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a></p>
     </footer>

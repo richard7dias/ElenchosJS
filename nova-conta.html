@@ -12,22 +12,25 @@
 </head>
 
 <body>
-    <main>
-        <section>
+    <main id="cointainer-login">
+        <header id="cabecalho">
             <img src="imagens/elenchos-logotipo.png" alt="Elenchos" id="logotipo">
             <p>Controle de finanças pessoais</p>
-        </section>
-        <form>
+        </header>
+
+        <form id="inputs">
             <p>Nova conta</p>
-            <input type="text" name="nome" placeholder=" Primeiro nome" id="nome" required>
-            <input type="text" name="sobrenome" placeholder=" Sobrenome" id="sobrenome" required>
-            <input type="text" name="email" placeholder=" Email" id="email" required>
-            <input type="password" name="senha" placeholder=" Crie uma senha" id="senha" required>
+            <input type="text" placeholder=" Primeiro nome" class="input" id="nome" required>
+            <input type="text" placeholder=" Sobrenome" class="input" id="sobrenome" required>
+            <input type="text" placeholder=" Email" class="input" id="email" required>
+            <input type="password" placeholder=" Crie uma senha" class="input" id="senha" required>
             <button type="submit" name="submit" onclick="cadastrar()">Cadastrar</button>
         </form>
+
         <a href="index.html" id="fazer-login">
             <p>Fazer login</p>
         </a>
+
         <div id="msg"></div>
     </main>
     <footer>

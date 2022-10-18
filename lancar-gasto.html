@@ -33,7 +33,7 @@
             <a href="#" class="menu" id="relatorios">Relatórios</a>
         </nav>
         <main>
-            <button onclick="abrirLancamento()" id="novo-gasto">Novo Gasto</button>
+            <button onclick="abrirJanela()" id="novo-gasto">Novo Gasto</button>
             <div id="lancados">
                 <table>
                     <thead>
@@ -49,23 +49,24 @@
                     </tbody>
                 </table>
             </div>
+            
             <div class="lancamento-container">
                 <div class="lancamento">
-                    <button id="btn-fechar" onclick="fechaJanela()"><i class="fa-solid fa-xmark"></i></button>
+                    <button id="btn-fechar" onclick="fecharJanela()"><i class="fa-solid fa-xmark"></i></button>
                     <div><h3>Lançar gasto</h3></div>
-                    <p>Data: <input type="date" class="input-lancar" id="input-data" required></p>
-                    <p>Descrição: <input type="text" class="input-lancar" id="input-descricao" required></p>
+                    <p>Data: <input type="date" class="input-lancar" id="input-data"></p>
+                    <p>Descrição: <input type="text" class="input-lancar" id="input-descricao"></p>
                     <p>Categria:
-                        <select class="input-lancar" id="input-categoria" required>
+                        <select class="input-lancar" id="input-categoria">
                             <option value="vazio"></option>
-                            <option value="mercado">Mercado</option>
-                            <option value="combustivel">Combustível</option>
-                            <option value="contas">Contas fixas</option>
+                            <option value="Mercado">Mercado</option>
+                            <option value="Combustivel">Combustível</option>
+                            <option value="Contas Fixas">Contas Fixas</option>
                         </select>
                     </p>
-                    <p>Valor: <input type="number" class="input-lancar" id="input-valor" required></p>
+                    <p>Valor: <input type="number" class="input-lancar" id="input-valor"></p>
                     <div id="alerta"></div>
-                    <button type="submit" id="btn-lancar">Lançar</button>
+                    <button type="submit" id="btn-lancar" onclick="lancar()">Lançar</button>
                 </div>
             </div>
         </main>

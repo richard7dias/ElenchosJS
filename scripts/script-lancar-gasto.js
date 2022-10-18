@@ -6,15 +6,19 @@ const categoria = document.getElementById('input-categoria')
 const valor = document.getElementById('input-valor')
 const btnLancar = document.getElementById('btn-lancar')
 const alerta = document.getElementById('alerta')
+const buscarBD = () => JSON.parse(localStorage.getItem('dbfunc'))
+const editarBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
 let itens
 let id
 
-function abrirLancamento(editar = false, index = 0) {
+carregarItens()
+
+function abrirJanela(editar = false, index = 0) {
     lancamentoContainer.classList.add('ativo')
 
     lancamentoContainer.onclick = e => {
         if (e.target.className.indexOf('lancamento-container') !== -1) {
-            fechaJanela()
+            fecharJanela()
         }
     }
 
@@ -32,44 +36,46 @@ function abrirLancamento(editar = false, index = 0) {
     }
 }
 
-function fechaJanela() {
+function fecharJanela() {
+    alerta.innerHTML = ''
     lancamentoContainer.classList.remove('ativo')
 }
 
 function editarItem(index) {
-
-    abrirLancamento(true, index)
+    abrirJanela(true, index)
 }
 
-function deletaItem(index) {
-    itens.splice(index, 1)
-    setItensBD()
-    loadItens()
+function deletarItem(index) {
+    let confirmar = confirm(`Deseja apagar ${itens[index].descricao}, de ${itens[index].categoria}?`)
+    if (confirmar == true) {
+        itens.splice(index, 1)
+        editarBD()
+    }
+    carregarItens()
 }
 
-function insereItem(item, index) {
-    let tr = document.createElement('tr')
+function inserirItem(item, index) {
+    let tabela = document.createElement('tr')
 
-    tr.innerHTML = `
+    tabela.innerHTML = `
     <td>${item.data}</td>
     <td>${item.descricao}</td>
     <td>${item.categoria}</td>
     <td>R$ ${item.valor}</td>
     <td class="acao">
-    <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>    <button onclick="deletaItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
+    <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>    <button onclick="deletarItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
     </td>`
-    tbody.appendChild(tr)
+    tbody.appendChild(tabela)
 }
 
-btnLancar.onclick = e => {
-
+function lancar() {
     if (data.value == '' || descricao.value == '' || categoria.value == '' || valor.value == '') {
+        alerta.innerHTML = ''
         let msgAlerta = document.createElement('p')
         msgAlerta.innerHTML = 'Preencha todos os campos!'
         return alerta.appendChild(msgAlerta)
     }
-
-    e.preventDefault(); //para não executar nada do botão de origem
+    alerta.innerHTML = ''
 
     if (id !== undefined) {
         itens[id].data = data.value
@@ -80,23 +86,17 @@ btnLancar.onclick = e => {
         itens.push({ 'data': data.value, 'descricao': descricao.value, 'categoria': categoria.value, 'valor': valor.value })
     }
 
-    setItensBD()
+    editarBD()
 
     lancamentoContainer.classList.remove('ativo')
-    loadItens()
+    carregarItens()
     id = undefined
 }
 
-function loadItens() {
-    itens = getItensBD()
+function carregarItens() {
+    itens = buscarBD()
     tbody.innerHTML = ''
     itens.forEach((item, index) => {
-        insereItem(item, index)
+        inserirItem(item, index)
     })
-
 }
-
-const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
-const setItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
-
-loadItens()
