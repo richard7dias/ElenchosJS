@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenchos - Nova conta</title>
+    <link rel="stylesheet" href="style/style-nova-conta.css">
+    <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
+    <script src="scripts/script-nova-conta.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <img src="imagens/elenchos-logotipo.png" alt="Elenchos" id="logotipo">
+            <p>Controle de finanças pessoais</p>
+        </section>
+        <form>
+            <p>Nova conta</p>
+            <input type="text" name="nome" placeholder=" Primeiro nome" id="nome" required>
+            <input type="text" name="sobrenome" placeholder=" Sobrenome" id="sobrenome" required>
+            <input type="text" name="email" placeholder=" Email" id="email" required>
+            <input type="password" name="senha" placeholder=" Crie uma senha" id="senha" required>
+            <button type="submit" name="submit" onclick="cadastrar()">Cadastrar</button>
+        </form>
+        <a href="index.html" id="fazer-login">
+            <p>Fazer login</p>
+        </a>
+        <div id="msg"></div>
+    </main>
+    <footer>
+        <p>&copy; 2022 - <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a></p>
+    </footer>
+</body>
+
+</html>

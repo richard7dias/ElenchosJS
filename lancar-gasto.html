@@ -9,56 +9,69 @@
     <link rel="stylesheet" href="style/style-geral.css">
     <link rel="stylesheet" href="style/style-lancar-gasto.css">
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
-    <script src="script/script-lancar-gasto.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="scripts/script-lancar-gasto.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <aside id="barra-login">
-            <div id="saudacao">
-            </div>
-            <div id="sair">
-                <a href="config/sair.php">Sair</a>
-            </div>
-        </aside>
-        <div id="cabecalho">
-            <img src="imagens/elenchos-logotipo.png" alt="Elenchos" id="logotipo">
-            <p>Controle de finanças pessoais</p>
-        </div>
+    <header id="barra-logo">
+        <img src="imagens/elenchos-logotipo.png" alt="Elenchos" id="logotipo">
     </header>
+    <anside id="barra-lateral">
+        <div><i id="icn-menu" class="fa-solid fa-bars"></i></div>
+        <div id="btn-sair">
+            <a href="#">Sair</a>
+        </div>
+    </anside>
     <div id="conteudo">
-        <nav>
-            <a href="sistema.php" class="menu" id="resumo">Resumo</a>
-            <a href="lancar-gasto.php" class="menu" id="lancar-gasto">Lançar Gasto</a>
-            <a href="orcamento.php" class="menu" id="orcamento">Orçamento</a>
-            <a href="relatorios.php" class="menu" id="relatorios">Relatórios</a>
+        <nav id="barra-nav">
+            <a href="#" class="menu" id="resumo">Resumo</a>
+            <a href="#" class="menu" id="lancar-gasto">Lançar Gasto</a>
+            <a href="#" class="menu" id="orcamento">Orçamento</a>
+            <a href="#" class="menu" id="relatorios">Relatórios</a>
         </nav>
         <main>
-            <form action="config/lancamento.php" method="POST" id="lancamento">
-                <h3>Lançar gasto</h3>
-                <p>Data: <input type="date" name="data" class="input-caixa" id="data"></p>
-                <p>Descrição: <input type="text" name="descricao" class="input-caixa" id="descricao"></p>
-                <p>Categria:
-                    <select name="categoria" class="input-caixa" id="categoria">
-                        <option value="vazio"></option>
-                        <option value="mercado">Mercado</option>
-                        <option value="combustivel">Combustível</option>
-                        <option value="contas">Contas fixas</option>
-                    </select>
-                </p>
-                <p>Valor: <input type="number" name="valor" class="input-caixa" id="valor"></p>
-                <button type="submit" name="submit" id="btn-lancar">Lançar</button>
-            </form>
-            <div id="historico">
-                <form id="lancados">
-                    <h3>Histórico</h3>
-                </form>
+            <button onclick="abrirLancamento()" id="novo-gasto">Novo Gasto</button>
+            <div id="lancados">
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="canto-esqu">Data</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                            <th class="acao" id="canto-dir"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="lancamento-container">
+                <div class="lancamento">
+                    <button id="btn-fechar" onclick="fechaJanela()"><i class="fa-solid fa-xmark"></i></button>
+                    <div><h3>Lançar gasto</h3></div>
+                    <p>Data: <input type="date" class="input-lancar" id="input-data" required></p>
+                    <p>Descrição: <input type="text" class="input-lancar" id="input-descricao" required></p>
+                    <p>Categria:
+                        <select class="input-lancar" id="input-categoria" required>
+                            <option value="vazio"></option>
+                            <option value="mercado">Mercado</option>
+                            <option value="combustivel">Combustível</option>
+                            <option value="contas">Contas fixas</option>
+                        </select>
+                    </p>
+                    <p>Valor: <input type="number" class="input-lancar" id="input-valor" required></p>
+                    <div id="alerta"></div>
+                    <button type="submit" id="btn-lancar">Lançar</button>
+                </div>
             </div>
         </main>
     </div>
     <footer>
-        <p>&copy; 2022, <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a>.</p>
+        <p>&copy; 2022 - <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a></p>
     </footer>
 </body>
-
 </html>

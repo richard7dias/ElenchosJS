@@ -1,0 +1,19 @@
+#relatorios {
+    background-color: white;
+}
+
+#gastos-gerais {
+    display: inline-block;
+    width: 49%;
+    height: 300px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#totais {
+    display: inline-block;
+    width: 49%;
+    height: 300px;
+    text-align: center;
+    padding-top: 10px;
+}

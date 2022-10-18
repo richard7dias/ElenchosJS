@@ -1,0 +1,128 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+    --cor1: #0A37CC;
+    --cor2: #096FAB;
+    --cor3: #09AB61;
+    --cor4: #e7f0ff;
+    --cor5: #00C717;
+    --cor6: #f3f3f3;
+    --cor7: #e6e6e6;
+    --cor8: #08527d;
+    --sombra: #0000003b;
+
+    --fonte-logo: 'Julius Sans One', sans-serif;
+    --fonte-padrao: 'Open Sans', sans-serif;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--fonte-padrao);
+}
+
+body {
+    background-color: var(--cor6);
+    color: var(--cor2);
+}
+
+#logotipo {
+    max-width: 250px;
+    display: block;
+    margin: auto;
+}
+
+main {
+    padding: 20px;
+    width: 300px;
+    margin: auto;
+    margin-top: 50px !important;
+    border-radius: 20px;
+    box-shadow: 0px 20px 60px -20px var(--sombra);
+    background-color: white;
+}
+
+section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+form {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form>p {
+    font-weight: bold;
+}
+
+#login,
+#senha {
+    display: block;
+    margin: 10px auto;
+    width: 237px;
+    height: 30px;
+    padding-left: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--cor4);
+}
+
+a {
+    text-decoration: none;
+}
+
+#res {
+    color: red;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--cor2);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.botoes {
+    margin: 10px auto;
+    width: 250px;
+    height: 38px;
+    font-weight: bold;
+    background-color: var(--cor2);
+    color: white;
+    border: 1px solid var(--cor7);
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes:hover {
+    background-color: var(--cor8);
+    transition: 0.2s;
+}
+
+.botoes:active {
+    background-color: var(--cor8);
+    transition: 0.2s;
+    width: 240px;
+    font-size: 0.98rem;
+}
+
+#nova-conta>p {
+    font-weight: bold;
+    margin-top: 20px;
+}
