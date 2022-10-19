@@ -1,102 +1,125 @@
-let nome = document.getElementById('nome')
-let sobrenome = document.getElementById('sobrenome')
-let email = document.getElementById('email')
-let senha = document.getElementById('senha')
+const nome = document.getElementById('nome')
+const sobrenome = document.getElementById('sobrenome')
+const email = document.getElementById('email')
+const senha = document.getElementById('senha')
+const confSenha = document.getElementById('conf-senha')
+const msgSenha = document.getElementById('msg-senha')
+const msgConfSenha = document.getElementById('msg-confi-senha')
+const footer = document.querySelector('footer')
+const olho1 = document.getElementById('olho1')
+const olho2 = document.getElementById('olho2')
+const msgFinal = document.getElementById('msg')
+const btnCadastar = document.getElementById('cadastrar')
+let validNome = false
+let validSobrenome = false
+let validEmail = false
+let validSenha = false
+let validConfSenha = false
 
-/*
-function cadastrar() {
-    return window.alert(`Cadastrado com sucesso! Seu nome é ${nome.value} ${sobrenome.value}, seu email para login é ${email.value} e sua senha é ${senha.value}.`)
-}
-*/
+const listaUsuarios = JSON.parse(localStorage.getItem('listaUsuarios') || '[]')
 
 
-
-
-
-const campos = document.querySelectorAll("[required]")
-
-function ValidateField(campo) {
-    // logica para verificar se existem erros
-    function verifyErrors() {
-        let foundError = false;
-
-        for(let error in campo.validity) {
-            // se não for customError
-            // então verifica se tem erro
-            if (campo.validity[error] && !campo.validity.valid ) {
-                foundError = error
-            }
-        }
-        return foundError;
+//Visualizar senhas
+olho1.addEventListener('click', () => {
+    if (senha.getAttribute('type') == 'password') {
+        senha.setAttribute('type', 'text')
+    } else {
+        senha.setAttribute('type', 'password')
     }
-
-    function customMessage(typeError) {
-        const messages = {
-            text: {
-                valueMissing: "Por favor, preencha este campo"
-            },
-            email: {
-                valueMissing: "Email é obrigatório",
-                typeMismatch: "Por favor, preencha um email válido"
-            }
-        }
-
-        return messages[campo.type][typeError]
+})
+olho2.addEventListener('click', () => {
+    if (confSenha.getAttribute('type') == 'password') {
+        confSenha.setAttribute('type', 'text')
+    } else {
+        confSenha.setAttribute('type', 'password')
     }
+})
 
-    function setCustomMessage(message) {
-        const spanError = campo.parentNode.querySelector("span.error")
-        
-        if (message) {
-            spanError.classList.add("active")
-            spanError.innerHTML = message
+//Validação dos campos
+//Campo Nome digitado
+nome.addEventListener('keyup', () => {
+    if (nome.value.length < 1) {
+        nome.setAttribute('style', 'border: 1px solid var(--cor5)')
+        validNome = false
+    } else {
+        nome.setAttribute('style', 'border: none')
+        validNome = true
+    }
+})
+
+//Campo Sobrenome digitado
+sobrenome.addEventListener('keyup', () => {
+    if (sobrenome.value.length < 1) {
+        sobrenome.setAttribute('style', 'border: 1px solid var(--cor5)')
+        validSobrenome = false
+    } else {
+        sobrenome.setAttribute('style', 'border: none')
+        validSobrenome = true
+    }
+})
+
+//Campo Email digitado
+email.addEventListener('keyup', () => {
+    if (email.value.length < 1) {
+        email.setAttribute('style', 'border: 1px solid var(--cor5)')
+        validEmail = false
+    } else {
+        email.setAttribute('style', 'border: none')
+        validEmail = true
+    }
+})
+
+//Tamanho da senha e validaçao do campo
+senha.addEventListener('keyup', () => {
+    if (senha.value.length < 6) {
+        msgSenha.innerHTML = 'A senha deve ter no mínimo 6 caracteres'
+        senha.setAttribute('style', 'border: 1px solid var(--cor5)')
+        olho2.setAttribute('style', 'top: 358px')
+        footer.setAttribute('style', 'bottom: 7%')
+        validSenha = false
+    } else {
+        msgSenha.innerHTML = ''
+        senha.setAttribute('style', 'border: none')
+        olho2.setAttribute('style', 'top: 340px')
+        footer.setAttribute('style', 'bottom: 9%')
+        validSenha = true
+    }
+})
+
+//Confirmação do campo confSenha e senhas iguais
+confSenha.addEventListener('keyup', () => {
+    if (confSenha.value.length < 1) {
+        confSenha.setAttribute('style', 'border: 1px solid var(--cor5)')
+        validConfSenha = false
+    } else {
+        if (senha.value != confSenha.value) {
+            msgConfSenha.innerHTML = 'As senhas não conferem'
+            confSenha.setAttribute('style', 'border: 1px solid var(--cor5)')
+            footer.setAttribute('style', 'bottom: 7%')
+            validConfSenha = false
         } else {
-            spanError.classList.remove("active")
-            spanError.innerHTML = ""
+            msgConfSenha.innerHTML = ''
+            confSenha.setAttribute('style', 'border: none')
+            footer.setAttribute('style', 'bottom: 9%')
+            validConfSenha = true
         }
     }
+})
 
-    return function() {
+//Cadastrar form
+btnCadastar.addEventListener('click', () => {
+    //Campos preenchidos e com senhas validadas
+    if (validNome == false || validSobrenome == false || validEmail == false || validSenha == false || validConfSenha == false) {
+        msgFinal.innerHTML = 'Preencha todos os campos corretamente!'
+    } else {
+        // listaUsuarios.push({
+        //     'nome': nome.value,
+        //     'sobrenome': sobrenome.value,
+        //     'email': email.value,
+        //     'senha': senha.value
+        // })
+        // localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
 
-        const error = verifyErrors()
-
-        if(error) {
-            const message = customMessage(error)
-
-            campo.style.borderColor = "red"
-            setCustomMessage(message)
-        } else {
-            campo.style.borderColor = "green"
-            setCustomMessage()
-        }
+        window.location.href = 'index.html'
     }
-}
-
-
-function customValidation(event) {
-
-    const campo = event.target
-    const validation = ValidateField(campo)
-
-    validation()
-
-}
-
-for(campo of campos ){
-    campo.addEventListener("invalid", event => { 
-        // eliminar o bubble
-        event.preventDefault()
-
-        customValidation(event)
-    })
-    campo.addEventListener("blur", customValidation)
-}
-
-
-document.querySelector("form")
-.addEventListener("submit", event => {
-    console.log("enviar o formulário")
-
-    // não vai enviar o formulário
-    event.preventDefault()
 })

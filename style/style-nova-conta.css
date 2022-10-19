@@ -15,6 +15,9 @@
     --cor11: #09AB61;
     --sombra: #0000003b;
 
+
+    --1: #f3fff4;
+
     --fonte-padrao: 'Open Sans', sans-serif;
 }
 
@@ -77,6 +80,28 @@ body {
     color: var(--cor3);
 }
 
+#msg-senha,
+#msg-confi-senha,
+#msg {
+    color: var(--cor5);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+#olho1 {
+    position: absolute;
+    top: 300px;
+    right: 40px;
+    cursor: pointer;
+}
+
+#olho2 {
+    position: absolute;
+    top: 340px;
+    right: 40px;
+    cursor: pointer;
+}
+
 button {
     margin: 10px auto;
     width: 250px;
@@ -116,7 +141,7 @@ button:active {
 
 footer {
     position: absolute;
-    bottom: 12%;
+    bottom: 9%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

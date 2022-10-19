@@ -8,6 +8,9 @@
     <title>Elenchos - Nova conta</title>
     <link rel="stylesheet" href="style/style-nova-conta.css">
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="scripts/script-nova-conta.js" defer></script>
 </head>
 
@@ -24,14 +27,19 @@
             <input type="text" placeholder=" Sobrenome" class="input" id="sobrenome" required>
             <input type="text" placeholder=" Email" class="input" id="email" required>
             <input type="password" placeholder=" Crie uma senha" class="input" id="senha" required>
-            <button type="submit" name="submit" onclick="cadastrar()">Cadastrar</button>
+            <div id="msg-senha"></div>
+            <i class="fa-solid fa-eye" id="olho1"></i>
+            <input type="password" placeholder=" Confirme sua senha" class="input" id="conf-senha" required>
+            <div id="msg-confi-senha"></div>
+            <i class="fa-solid fa-eye" id="olho2"></i>
+            <button type="submit" id="cadastrar">Cadastrar</button>
+            <div id="msg"></div>
         </form>
 
         <a href="index.html" id="fazer-login">
             <p>Fazer login</p>
         </a>
 
-        <div id="msg"></div>
     </main>
     <footer>
         <p>&copy; 2022 - <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a></p>

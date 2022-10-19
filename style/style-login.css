@@ -71,6 +71,13 @@ body {
     color: var(--cor3);
 }
 
+#olho {
+    position: absolute;
+    top: 226px;
+    right: 40px;
+    cursor: pointer;
+}
+
 a {
     text-decoration: none;
 }
