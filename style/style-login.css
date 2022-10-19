@@ -71,6 +71,10 @@ body {
     color: var(--cor3);
 }
 
+#senha {
+    padding-right: 30px;
+}
+
 #olho {
     position: absolute;
     top: 226px;
@@ -84,6 +88,8 @@ a {
 
 #msg {
     color: red;
+    text-align: center;
+    margin-top: 5px;
 }
 
 .botoes {

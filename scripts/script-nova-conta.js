@@ -15,7 +15,6 @@ let validSobrenome = false
 let validEmail = false
 let validSenha = false
 let validConfSenha = false
-
 const listaUsuarios = JSON.parse(localStorage.getItem('listaUsuarios') || '[]')
 
 
@@ -112,14 +111,19 @@ btnCadastar.addEventListener('click', () => {
     if (validNome == false || validSobrenome == false || validEmail == false || validSenha == false || validConfSenha == false) {
         msgFinal.innerHTML = 'Preencha todos os campos corretamente!'
     } else {
-        // listaUsuarios.push({
-        //     'nome': nome.value,
-        //     'sobrenome': sobrenome.value,
-        //     'email': email.value,
-        //     'senha': senha.value
-        // })
-        // localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
+        listaUsuarios.push({
+            'nome': nome.value,
+            'sobrenome': sobrenome.value,
+            'email': email.value,
+            'senha': senha.value
+        })
+        localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
 
-        window.location.href = 'index.html'
+        let confirmar = confirm(`${nome.value}, seu cadastro foi feito com sucesso!`)
+        if (confirmar == true) {
+            window.location.href = 'index.html'
+        } else {
+            window.location.href = 'nova-conta.html.html'
+        }
     }
 })

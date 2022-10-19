@@ -80,6 +80,10 @@ body {
     color: var(--cor3);
 }
 
+#senha, #conf-senha {
+    padding-right: 30px;
+}
+
 #msg-senha,
 #msg-confi-senha,
 #msg {
