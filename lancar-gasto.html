@@ -36,7 +36,10 @@
         </nav>
 
         <main>
-            <button onclick="abrirJanela()" id="novo-gasto">Novo Gasto</button>
+            <nav id="btns-nav">
+                <button class="botoes" id="novo-gasto" onclick="abrirJanela()">Novo Gasto</button>
+            </nav>
+
             <div id="lancados">
                 <table>
                     <thead>
@@ -48,7 +51,7 @@
                             <th class="acao"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody-lancados">
                     </tbody>
                 </table>
             </div>
@@ -73,7 +76,6 @@
                     <div id="alerta"></div>
                     <button id="btn-lancar" onclick="lancar()">Lançar</button>
                 </div>
-
             </div>
         </main>
     </div>

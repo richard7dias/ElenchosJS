@@ -7,15 +7,14 @@
     margin: auto;
 }
 
-#btn-lancar,
-#novo-gasto {
+#btn-lancar {
     margin-top: 10px;
     width: 100%;
     padding: 0.3rem 0.6rem;
     background-color: var(--cor2);
     color: white;
     font-weight: bold;
-    border: 0;
+    border: none;
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
@@ -50,26 +49,6 @@
 
 #lancados {
     margin-top: 20px;
-}
-
-.acao {
-    width: 90px;
-    text-align: center;
-}
-
-.btn-acao {
-    border: none;
-    outline: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 5px 3px 2px 3px;
-    margin-right: 10px;
-}
-
-td button i {
-    font-size: 1rem;
-    color: var(--cor2);
-    display: flex;
 }
 
 .lancamento-container {

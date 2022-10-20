@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="style/style-resumo.css">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="scripts/script-resumo.js" defer></script>
 </head>
 
 <body>
@@ -34,60 +35,69 @@
         </nav>
 
         <main>
-            <div id="caixa">
-                <p>Caixa atual: R$300,00</p>
-            </div>
+            <nav id="btns-nav">
+                <button class="botoes" onclick="abrirJanelaSaldo()">Adicionar conta bancária</button>
+                <button class="botoes" onclick="abrirJanelaGasto()">Adicionar fonte de gasto</button>
+            </nav>
 
-            <div id="tabelas">
+            <div>
                 <div id="saldos">
-                    <table class="tabela">
+                    <table>
                         <caption>Saldos</caption>
                         <thead>
                             <th>Conta</th>
                             <th>Valor</th>
+                            <th class="acao"></th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Conta 1</td>
-                                <td>R$2.000,00</td>
-                            </tr>
-                            <tr>
-                                <td>Conta 3</td>
-                                <td>R$2.300,00</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Total</td>
-                                <td>R$4.300,00</td>
-                            </tr>
-                        </tfoot>
+                        <tbody id="tbody-saldos"></tbody>
+                        <tfoot id="tfoot-saldos"></tfoot>
                     </table>
                 </div>
                 <div id="gastos">
-                    <table class="tabela">
+                    <table>
                         <caption>Gastos</caption>
                         <thead>
                             <th>Descrição</th>
                             <th>Valor</th>
+                            <th class="acao"></th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Fatura cartão</td>
-                                <td>R$1.200,00</td>
-                            </tr>
-                            <tr>
-                                <td>Mês atual</td>
-                                <td>R$2.800,00</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
+                        <tbody id="tbody-gastos"></tbody>
+                        <tfoot id="tfoot-gastos">
                             <tr>
                                 <td>Total</td>
                                 <td>R$4000,00</td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>
+                </div>
+            </div>
+
+            <div id="caixa"></div>
+
+            <div class="janela-container-saldo">
+                <div class="janela-saldo">
+                    <button class="btn-fechar" onclick="fecharJanelaSaldo()"><i class="fa-solid fa-xmark"></i></button>
+                    <div>
+                        <h3>Conta</h3>
+                    </div>
+                    <p>Conta: <input type="text" class="input-lancar" id="input-conta"></p>
+                    <p>Valor: <input type="number" class="input-lancar" id="input-valor-conta"></p>
+                    <div id="alerta-saldo"></div>
+                    <button type="submit" class="botoes" id="btn-lancar-saldo" onclick="lancarSaldo()">Lançar</button>
+                </div>
+            </div>
+
+            <div class="janela-container-gasto">
+                <div class="janela-gasto">
+                    <button class="btn-fechar" onclick="fecharJanelaGasto()"><i class="fa-solid fa-xmark"></i></button>
+                    <div>
+                        <h3>Gasto</h3>
+                    </div>
+                    <p>Descrição: <input type="text" class="input-lancar" id="input-descricao"></p>
+                    <p>Valor: <input type="number" class="input-lancar" id="input-valor-gasto"></p>
+                    <div id="alerta-gasto"></div>
+                    <button type="submit" class="botoes" id="btn-lancar-gasto" onclick="lancarGasto()">Lançar</button>
                 </div>
             </div>
         </main>

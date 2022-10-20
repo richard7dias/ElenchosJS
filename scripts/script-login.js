@@ -35,7 +35,7 @@ btnEntrar.addEventListener('click', () => {
         msg.innerHTML = 'Preencha todos os campos!'
     } else if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
         alert(`Olá, ${validUsuario.nome}!`)
-        window.location.href = 'lancar-gasto.html'
+        window.location.href = 'resumo.html'
     } else {
         msg.innerHTML = 'Usuário e senha incorretos'
         email.setAttribute('style', 'border: 1px solid var(--cor5)')

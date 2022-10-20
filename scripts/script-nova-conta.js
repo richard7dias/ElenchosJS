@@ -73,14 +73,10 @@ senha.addEventListener('keyup', () => {
     if (senha.value.length < 6) {
         msgSenha.innerHTML = 'A senha deve ter no mínimo 6 caracteres'
         senha.setAttribute('style', 'border: 1px solid var(--cor5)')
-        olho2.setAttribute('style', 'top: 358px')
-        footer.setAttribute('style', 'bottom: 7%')
         validSenha = false
     } else {
         msgSenha.innerHTML = ''
         senha.setAttribute('style', 'border: none')
-        olho2.setAttribute('style', 'top: 340px')
-        footer.setAttribute('style', 'bottom: 9%')
         validSenha = true
     }
 })
@@ -94,12 +90,10 @@ confSenha.addEventListener('keyup', () => {
         if (senha.value != confSenha.value) {
             msgConfSenha.innerHTML = 'As senhas não conferem'
             confSenha.setAttribute('style', 'border: 1px solid var(--cor5)')
-            footer.setAttribute('style', 'bottom: 7%')
             validConfSenha = false
         } else {
             msgConfSenha.innerHTML = ''
             confSenha.setAttribute('style', 'border: none')
-            footer.setAttribute('style', 'bottom: 9%')
             validConfSenha = true
         }
     }
@@ -123,7 +117,7 @@ btnCadastar.addEventListener('click', () => {
         if (confirmar == true) {
             window.location.href = 'index.html'
         } else {
-            window.location.href = 'nova-conta.html.html'
+            window.location.href = 'nova-conta.html'
         }
     }
 })

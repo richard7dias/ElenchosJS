@@ -1,10 +1,9 @@
 const lancamentoContainer = document.querySelector('.lancamento-container')
-const tbody = document.querySelector('tbody')
+const tbody = document.querySelector('#tbody-lancados')
 const data = document.getElementById('input-data')
 const descricao = document.getElementById('input-descricao')
 const categoria = document.getElementById('input-categoria')
 const valor = document.getElementById('input-valor')
-const btnLancar = document.getElementById('btn-lancar')
 const alerta = document.getElementById('alerta')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
@@ -54,7 +53,7 @@ function abrirJanela(editar = false, index = 0) {
     //Fechar ao clicar fora da janela
     lancamentoContainer.onclick = e => {
         if (e.target.className.indexOf('lancamento-container') !== -1) {
-            lancamentoContainer.classList.remove('ativo')
+            fecharJanela()
         }
     }
 
