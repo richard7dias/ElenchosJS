@@ -33,15 +33,15 @@ btnEntrar.addEventListener('click', () => {
 
     if (email.value.length < 1 || senha.value.length < 1) {
         msg.innerHTML = 'Preencha todos os campos!'
+    } else if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
+        alert(`Olá, ${validUsuario.nome}!`)
+        window.location.href = 'lancar-gasto.html'
     } else {
-        if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
-            alert(`Olá, ${validUsuario.nome}!`)
-            window.location.href = 'resumo.html'
-        } else {
-            msg.innerHTML = 'Usuário e senha incorretos'
-            email.setAttribute('style', 'border: 1px solid var(--cor5)')
-            senha.setAttribute('style', 'border: 1px solid var(--cor5)')
-            email.focus()
-        }
+        msg.innerHTML = 'Usuário e senha incorretos'
+        email.setAttribute('style', 'border: 1px solid var(--cor5)')
+        senha.setAttribute('style', 'border: 1px solid var(--cor5)')
+        email.focus()
     }
+
+
 })

@@ -22,7 +22,7 @@
     <anside id="barra-lateral">
         <div><i id="icn-menu" class="fa-solid fa-bars"></i></div>
         <div id="btn-sair">
-            <a href="#">Sair</a>
+            <a onclick="sair()">Sair</a>
         </div>
     </anside>
     <div id="conteudo">
@@ -49,11 +49,13 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="lancamento-container">
                 <div class="lancamento">
                     <button id="btn-fechar" onclick="fecharJanela()"><i class="fa-solid fa-xmark"></i></button>
-                    <div><h3>Lançar gasto</h3></div>
+                    <div>
+                        <h3>Lançar gasto</h3>
+                    </div>
                     <p>Data: <input type="date" class="input-lancar" id="input-data"></p>
                     <p>Descrição: <input type="text" class="input-lancar" id="input-descricao"></p>
                     <p>Categria:
@@ -75,4 +77,5 @@
         <p>&copy; 2022 - <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a></p>
     </footer>
 </body>
+
 </html>
