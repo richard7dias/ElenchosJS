@@ -31,10 +31,8 @@ body {
 }
 
 #cointainer-login {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
+    margin-top: 7vh;
     padding: 20px;
     max-width: 300px;
     border-radius: 20px;
@@ -125,10 +123,8 @@ a {
 }
 
 footer {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-top: 20px;
 }
 
 footer a {

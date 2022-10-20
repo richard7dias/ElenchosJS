@@ -42,6 +42,4 @@ btnEntrar.addEventListener('click', () => {
         senha.setAttribute('style', 'border: 1px solid var(--cor5)')
         email.focus()
     }
-
-
 })

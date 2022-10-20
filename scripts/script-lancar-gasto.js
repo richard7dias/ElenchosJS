@@ -105,7 +105,3 @@ function lancar() {
     carregarItens()
     id = undefined
 }
-
-function sair() {
-    localStorage.
-}

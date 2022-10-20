@@ -116,6 +116,42 @@ main {
     background-color: white;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+caption {
+    font-weight: bold;
+    padding: 10px;
+}
+
+thead,
+tfoot {
+    background-color: var(--cor8);
+}
+
+tr {
+    border-bottom: 1px solid var(--cor1);
+}
+
+tbody tr td,
+tfoot tr td {
+    vertical-align: text-top;
+    padding: 6px;
+    max-width: 50px;
+}
+
+thead tr th {
+    padding: 5px;
+    text-align: start;
+    margin-bottom: 50px;
+}
+
+tbody tr {
+    margin-bottom: 50px;
+}
+
 footer {
     margin: 20px 0 20px 200px;
     text-align: center;

@@ -52,43 +52,6 @@
     margin-top: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead {
-    background-color: var(--cor8);
-}
-
-tr {
-    border-bottom: 1px solid var(--cor1);
-}
-
-tbody tr td {
-    vertical-align: text-top;
-    padding: 6px;
-    max-width: 50px;
-}
-
-thead tr th {
-    padding: 5px;
-    text-align: start;
-    margin-bottom: 50px;
-}
-
-tbody tr {
-    margin-bottom: 50px;
-}
-
-#canto-esqu {
-    border-radius: 10px 0 0 0;
-}
-
-#canto-dir {
-    border-radius: 0 10px 0 0;
-}
-
 .acao {
     width: 90px;
     text-align: center;

@@ -19,30 +19,33 @@
     <header id="barra-logo">
         <img src="imagens/elenchos-logotipo.png" alt="Elenchos" id="logotipo">
     </header>
+
     <anside id="barra-lateral">
         <div><i id="icn-menu" class="fa-solid fa-bars"></i></div>
         <div id="btn-sair">
-            <a onclick="sair()">Sair</a>
+            <a href="index.html">Sair</a>
         </div>
     </anside>
+
     <div id="conteudo">
         <nav id="barra-nav">
-            <a href="#" class="menu" id="resumo">Resumo</a>
-            <a href="#" class="menu" id="lancar-gasto">Lançar Gasto</a>
-            <a href="#" class="menu" id="orcamento">Orçamento</a>
-            <a href="#" class="menu" id="relatorios">Relatórios</a>
+            <a href="resumo.html" class="menu" id="resumo">Resumo</a>
+            <a href="lancar-gasto.html" class="menu" id="lancar-gasto">Lançar Gasto</a>
+            <a href="orcamento.html" class="menu" id="orcamento">Orçamento</a>
+            <a href="relatorios.html" class="menu" id="relatorios">Relatórios</a>
         </nav>
+
         <main>
             <button onclick="abrirJanela()" id="novo-gasto">Novo Gasto</button>
             <div id="lancados">
                 <table>
                     <thead>
                         <tr>
-                            <th id="canto-esqu">Data</th>
+                            <th>Data</th>
                             <th>Descrição</th>
                             <th>Categoria</th>
                             <th>Valor</th>
-                            <th class="acao" id="canto-dir"></th>
+                            <th class="acao"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +73,7 @@
                     <div id="alerta"></div>
                     <button id="btn-lancar" onclick="lancar()">Lançar</button>
                 </div>
+
             </div>
         </main>
     </div>

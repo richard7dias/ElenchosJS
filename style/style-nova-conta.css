@@ -15,9 +15,6 @@
     --cor11: #09AB61;
     --sombra: #0000003b;
 
-
-    --1: #f3fff4;
-
     --fonte-padrao: 'Open Sans', sans-serif;
 }
 
@@ -40,10 +37,8 @@ body {
 }
 
 #cointainer-login {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
+    margin-top: 7vh;
     padding: 20px;
     max-width: 300px;
     border-radius: 20px;
@@ -80,7 +75,8 @@ body {
     color: var(--cor3);
 }
 
-#senha, #conf-senha {
+#senha,
+#conf-senha {
     padding-right: 30px;
 }
 
@@ -94,15 +90,15 @@ body {
 
 #olho1 {
     position: absolute;
-    top: 300px;
-    right: 40px;
+    top: 346px;
+    right: 530px;
     cursor: pointer;
 }
 
 #olho2 {
     position: absolute;
-    top: 340px;
-    right: 40px;
+    top: 386px;
+    right: 530px;
     cursor: pointer;
 }
 
@@ -144,10 +140,8 @@ button:active {
 }
 
 footer {
-    position: absolute;
-    bottom: 9%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-top: 20px;
 }
 
 footer a {
