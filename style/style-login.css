@@ -69,14 +69,13 @@ body {
     color: var(--cor3);
 }
 
-#senha {
-    padding-right: 30px;
+#senha-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
 }
 
 #olho {
-    position: absolute;
-    top: 226px;
-    right: 40px;
     cursor: pointer;
 }
 

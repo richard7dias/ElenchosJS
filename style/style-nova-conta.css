@@ -75,9 +75,15 @@ body {
     color: var(--cor3);
 }
 
-#senha,
-#conf-senha {
-    padding-right: 30px;
+.senhas-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+#olho1,
+#olho2 {
+    cursor: pointer;
 }
 
 #msg-senha,
@@ -86,20 +92,6 @@ body {
     color: var(--cor5);
     font-size: 0.8rem;
     text-align: center;
-}
-
-#olho1 {
-    position: absolute;
-    top: 346px;
-    right: 530px;
-    cursor: pointer;
-}
-
-#olho2 {
-    position: absolute;
-    top: 386px;
-    right: 530px;
-    cursor: pointer;
 }
 
 button {

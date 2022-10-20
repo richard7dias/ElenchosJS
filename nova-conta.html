@@ -26,12 +26,16 @@
             <input type="text" placeholder=" Primeiro nome" class="input" id="nome" required>
             <input type="text" placeholder=" Sobrenome" class="input" id="sobrenome" required>
             <input type="text" placeholder=" Email" class="input" id="email" required>
-            <input type="password" placeholder=" Crie uma senha" class="input" id="senha" required>
+            <div class="senhas-container">
+                <input type="password" placeholder=" Crie uma senha" class="input" id="senha" required>
+                <i class="fa-solid fa-eye" id="olho1"></i>
+            </div>
             <div id="msg-senha"></div>
-            <i class="fa-solid fa-eye" id="olho1"></i>
-            <input type="password" placeholder=" Confirme sua senha" class="input" id="conf-senha" required>
+            <div class="senhas-container">
+                <input type="password" placeholder=" Confirme sua senha" class="input" id="conf-senha" required>
+                <i class="fa-solid fa-eye" id="olho2"></i>
+            </div>
             <div id="msg-confi-senha"></div>
-            <i class="fa-solid fa-eye" id="olho2"></i>
             <button type="submit" id="cadastrar">Cadastrar</button>
             <div id="msg"></div>
         </form>
