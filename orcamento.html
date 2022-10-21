@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="style/style-orcamento.css">
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="scripts/script-orcamento.js" defer></script>
 </head>
 
 <body>
@@ -32,11 +33,40 @@
             <a href="orcamento.html" class="menu" id="orcamento">Orçamento</a>
             <a href="relatorios.html" class="menu" id="relatorios">Relatórios</a>
         </nav>
-    <main>
-        <div id="orcamento-main">
-            <h3>Orçamento</h3>
-        </div>
-    </main>
+        <main>
+            <nav id="btns-nav">
+                <button class="botoes" id="nova-categoria" onclick="abrirJanela()">Nova Categoria</button>
+            </nav>
+
+            <div id="div-orcamento">
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="colum-categoria">Categoria</th>
+                            <th class="colum-valor" id="colum-orcamento">Orçamento</th>
+                            <th class="colum-valor" id="colum-gasto">Gasto</th>
+                            <th class="colum-valor" id="colum-disponivel">Disponível</th>
+                            <th class="acao"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-orcamento"></tbody>
+                    <tfoot id="tfoot-orcamento"></tfoot>
+                </table>
+            </div>
+
+            <div class="nova-categoria-janela">
+                <div class="nova-categoria">
+                    <button id="btn-fechar" onclick="fecharJanela()"><i class="fa-solid fa-xmark"></i></button>
+                    <div>
+                        <h3>Categoria</h3>
+                    </div>
+                    <p>Nome: <input type="text" class="input-lancar" id="input-nome"></p>
+                    <p>Orçamento: <input type="number" class="input-lancar" id="input-orcamento"></p>
+                    <div id="alerta"></div>
+                    <button id="btn-lancar" onclick="lancar()">Lançar</button>
+                </div>
+            </div>
+        </main>
     </div>
     <footer>
         <p>&copy; 2022, <a href="https://github.com/richard7dias" target="_blank">Richard Oliveira</a>.</p>

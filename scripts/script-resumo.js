@@ -34,7 +34,7 @@ function inserirItemTabSaldos(item, index) {
 
     tabela.innerHTML = `
     <td>${item.conta}</td>
-    <td>R$ <p class="valores">${numSaldo}</p></td>
+    <td><p class="valores">R$ ${numSaldo}</p></td>
     <td class="acao">
     <button onclick="editarItemSaldo(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>
     <button onclick="deletarItemSaldo(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
@@ -137,7 +137,7 @@ function inserirItemTabGasto(item, index) {
 
     tabela.innerHTML = `
     <td>${item.descricao}</td>
-    <td>R$ <p class="valores">${numGasto}</p></td>
+    <td><p class="valores">R$ ${numGasto}</p></td>
     <td class="acao">
     <button onclick="editarItemGasto(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>
     <button onclick="deletarItemGasto(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
@@ -310,7 +310,13 @@ function carregarCaixa() {
     iserirCaixa()
     function iserirCaixa() {
         let msgCaixa = document.createElement('p')
-        msgCaixa.innerHTML = `Caixa atual: R$ <p id="valor-caixa"> ${resCaixa.toFixed(2).replace(".", ",")}</p>`
+        msgCaixa.innerHTML = `Caixa atual: <p id="valor-caixa"> R$ ${resCaixa.toFixed(2).replace(".", ",")}</p>`
         return caixa.appendChild(msgCaixa)
     }
+
+        //Letra vermelha se caixa for negativo
+        if (resCaixa < 0) {
+            const valorCaixa = document.getElementById('valor-caixa')
+            valorCaixa.setAttribute('style', 'color: var(--cor5)')
+        }
 }

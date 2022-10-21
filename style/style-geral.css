@@ -176,7 +176,6 @@ tbody tr {
 }
 
 .valores {
-    display: inline-block;
     float: right;
 }
 
@@ -186,7 +185,7 @@ tbody tr {
 }
 
 .acao {
-    width: 120px;
+    width: 100px;
     text-align: right;
 }
 

@@ -5,32 +5,51 @@ const descricao = document.getElementById('input-descricao')
 const categoria = document.getElementById('input-categoria')
 const valor = document.getElementById('input-valor')
 const alerta = document.getElementById('alerta')
+const options = document.getElementById('input-categoria')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
+const buscarBDcategoria = () => JSON.parse(localStorage.getItem(categoria.value) || '[]')
+const editarBDcategoria = () => localStorage.setItem(categoria.value, JSON.stringify(gastoCat))
 let itens
+let gastoCat
 let id
 
 carregarItens()
-
 function carregarItens() {
     itens = buscarBD()
+    gastoCat = buscarBDcategoria()
     tbody.innerHTML = ''
     itens.forEach((item, index) => {
         inserirItemTabela(item, index)
+
+        //Todos os da mesma categoria vão para seu BD
+        if (itens.categoria == gastoCat.categoria) {
+            gastoCat.push({
+                'data': itens.data,
+                'descricao': itens.descricao,
+                'categoria': itens.categoria,
+                'valor': itens.valor
+            })
+        }
     })
+
+
+
+
+
 }
 
 function inserirItemTabela(item, index) {
     let tabela = document.createElement('tr')
 
     //Converter valor de string em número
-    let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".",",")
+    let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
 
     tabela.innerHTML = `
     <td>${item.data}</td>
     <td>${item.descricao}</td>
     <td>${item.categoria}</td>
-    <td>R$ <p class="valores">${numValor}</p></td>
+    <td><p class="valores">R$ ${numValor}</p></td>
     <td class="acao">
     <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>    <button onclick="deletarItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
     </td>`
@@ -60,6 +79,19 @@ function abrirJanela(editar = false, index = 0) {
         }
     }
 
+    //Colocar todas as categorias no input
+    //Buscar as categorias e colocar num array
+    const buscarBDcategorias = () => JSON.parse(localStorage.getItem('categorias'))
+    let itensCat = buscarBDcategorias()
+
+    //Colocar as categorias do array para o documento
+    options.innerHTML = ''
+    itensCat.forEach((item) => {
+        let categorias = document.createElement('option')
+        categorias.innerHTML = `<option value="${item.nome}}">${item.nome}</option>`
+        options.appendChild(categorias)
+    })
+
     if (editar) {
         data.value = itens[index].data
         descricao.value = itens[index].descricao
@@ -76,6 +108,7 @@ function abrirJanela(editar = false, index = 0) {
 
 function fecharJanela() {
     alerta.innerHTML = ''
+    options.innerHTML = ''
     lancamentoContainer.classList.remove('ativo')
 }
 
