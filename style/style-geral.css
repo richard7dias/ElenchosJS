@@ -175,9 +175,19 @@ tbody tr {
     margin-bottom: 50px;
 }
 
-.acao {
-    width: 90px;
+.valores {
+    display: inline-block;
+    float: right;
+}
+
+.colum-valor {
+    width: 110px;
     text-align: center;
+}
+
+.acao {
+    width: 120px;
+    text-align: right;
 }
 
 .btn-acao {

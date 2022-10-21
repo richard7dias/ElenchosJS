@@ -26,6 +26,10 @@
     border-radius: 10px;
 }
 
+#valor-caixa {
+    display: inline-block;
+}
+
 .janela-container-saldo,
 .janela-container-gasto {
     width: 100vw;

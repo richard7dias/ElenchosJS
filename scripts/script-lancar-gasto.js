@@ -23,11 +23,14 @@ function carregarItens() {
 function inserirItemTabela(item, index) {
     let tabela = document.createElement('tr')
 
+    //Converter valor de string em número
+    let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".",",")
+
     tabela.innerHTML = `
     <td>${item.data}</td>
     <td>${item.descricao}</td>
     <td>${item.categoria}</td>
-    <td>R$ ${item.valor}</td>
+    <td>R$ <p class="valores">${numValor}</p></td>
     <td class="acao">
     <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>    <button onclick="deletarItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
     </td>`

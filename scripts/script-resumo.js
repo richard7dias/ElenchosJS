@@ -1,3 +1,9 @@
+//Acesso Banco de dados
+const buscarBDSaldos = () => JSON.parse(localStorage.getItem('saldos') || '[]')
+const editarBDSaldos = () => localStorage.setItem('saldos', JSON.stringify(itensSaldo))
+const buscarBDGastos = () => JSON.parse(localStorage.getItem('gastos') || '[]')
+const editarBDGastos = () => localStorage.setItem('gastos', JSON.stringify(itensGasto))
+
 //Tabela Saldos
 //Constantes e variáveis
 const tbodySaldos = document.getElementById('tbody-saldos')
@@ -7,26 +13,28 @@ const conta = document.getElementById('input-conta')
 const valorSaldo = document.getElementById('input-valor-conta')
 let itensSaldo
 let idSaldo
-const buscarBDSaldos = () => JSON.parse(localStorage.getItem('saldos') || '[]')
-const editarBDSaldos = () => localStorage.setItem('saldos', JSON.stringify(itensSaldo))
 
 //Funções
 carregarItensSaldo()
-
 function carregarItensSaldo() {
     itensSaldo = buscarBDSaldos()
     tbodySaldos.innerHTML = ''
     itensSaldo.forEach((item, index) => {
         inserirItemTabSaldos(item, index)
     })
+    somarSaldos()
+    carregarCaixa()
 }
 
 function inserirItemTabSaldos(item, index) {
     let tabela = document.createElement('tr')
 
+    //Converter valor de string em número
+    let numSaldo = Number.parseFloat(item.valorSaldo).toFixed(2).replace(".", ",")
+
     tabela.innerHTML = `
     <td>${item.conta}</td>
-    <td>R$ ${item.valorSaldo}</td>
+    <td>R$ <p class="valores">${numSaldo}</p></td>
     <td class="acao">
     <button onclick="editarItemSaldo(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>
     <button onclick="deletarItemSaldo(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
@@ -41,6 +49,7 @@ function deletarItemSaldo(index) {
         editarBDSaldos()
     }
     carregarItensSaldo()
+    carregarResSaldos()
 }
 
 function editarItemSaldo(index) {
@@ -106,8 +115,6 @@ const descricao = document.getElementById('input-descricao')
 const valorGasto = document.getElementById('input-valor-gasto')
 let itensGasto
 let idGasto
-const buscarBDGastos = () => JSON.parse(localStorage.getItem('gastos') || '[]')
-const editarBDGastos = () => localStorage.setItem('gastos', JSON.stringify(itensGasto))
 
 //Funções
 carregarItensGasto()
@@ -118,14 +125,19 @@ function carregarItensGasto() {
     itensGasto.forEach((item, index) => {
         inserirItemTabGasto(item, index)
     })
+    somarGastos()
+    carregarCaixa()
 }
 
 function inserirItemTabGasto(item, index) {
     let tabela = document.createElement('tr')
 
+    //Converter valor de string em número
+    let numGasto = Number.parseFloat(item.valorGasto).toFixed(2).replace(".", ",")
+
     tabela.innerHTML = `
     <td>${item.descricao}</td>
-    <td>R$ ${item.valorGasto}</td>
+    <td>R$ <p class="valores">${numGasto}</p></td>
     <td class="acao">
     <button onclick="editarItemGasto(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>
     <button onclick="deletarItemGasto(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
@@ -198,34 +210,107 @@ function lancarGasto() {
 
 //Soma Saldos
 function somarSaldos() {
-    let resSaldos = 0
     const tfootSaldos = document.getElementById('tfoot-saldos')
+    let resSaldos = 0
+    let valoresSaldo = []
     let totalSaldos = document.createElement('tr')
+    itensSaldo = buscarBDSaldos()
 
-    // itensSaldo.forEach((item) => {
-    //     item.valorSaldo += resSaldos
-    // })
+    //Colocar todos os valores no array e transformar em número
+    itensSaldo.forEach((item) => {
+        valoresSaldo.push(Number.parseFloat(item.valorSaldo))
+    })
 
-    totalSaldos.innerHTML = `
-    <td>Total</td>
-    <td>R$ ${resSaldos}</td>
-    <td></td>`
-    tfootSaldos.appendChild(totalSaldos)
+    //Somar todos os numeros do array
+    for (let i = 0; i < valoresSaldo.length; i++) {
+        resSaldos += valoresSaldo[i]
+    }
+
+    //Escrever no tfoot o resultado da soma
+    tfootSaldos.innerHTML = ''
+    inserirSomaTab()
+    function inserirSomaTab() {
+        totalSaldos.innerHTML = `
+        <td>Total</td>
+        <td>R$ <p class="valores">${resSaldos.toFixed(2).replace(".", ",")}</p></td>
+        <td></td>`
+        tfootSaldos.appendChild(totalSaldos)
+    }
 }
-somarSaldos()
-
-
-
 
 //Soma Gastos
+function somarGastos() {
+    const tfootGastos = document.getElementById('tfoot-gastos')
+    let resGasto = 0
+    let valoresGasto = []
+    let totalGasto = document.createElement('tr')
+    itensGasto = buscarBDGastos()
+
+    //Colocar todos os valores no array e transformar em número
+    itensGasto.forEach((item) => {
+        valoresGasto.push(Number.parseFloat(item.valorGasto))
+    })
+
+    //Somar todos os numeros do array
+    for (let i = 0; i < valoresGasto.length; i++) {
+        resGasto += valoresGasto[i]
+    }
+
+    //Escrever no tfoot o resultado da soma
+    tfootGastos.innerHTML = ''
+    inserirSomaTabGast()
+    function inserirSomaTabGast() {
+        totalGasto.innerHTML = `
+        <td>Total</td>
+        <td>R$ <p class="valores">${resGasto.toFixed(2).replace(".", ",")}</p></td>
+        <td></td>`
+        tfootGastos.appendChild(totalGasto)
+    }
+}
+
 
 //Soma Caixa
-let resCaixa = 0
-let caixa = document.getElementById('caixa')
-
 function carregarCaixa() {
-    let msgCaixa = document.createElement('p')
-    msgCaixa.innerHTML = `Caixa atual: R$${resCaixa}`
-    return caixa.appendChild(msgCaixa)
+    let caixa = document.getElementById('caixa')
+
+    //Soma dos saldos
+    let somaSaldos = 0
+    let valoresSaldo = []
+    itensSaldo = buscarBDSaldos()
+
+    //Colocar todos os valores no array e transformar em número
+    itensSaldo.forEach((item) => {
+        valoresSaldo.push(Number.parseFloat(item.valorSaldo))
+    })
+
+    //Somar todos os numeros do array
+    for (let i = 0; i < valoresSaldo.length; i++) {
+        somaSaldos += valoresSaldo[i]
+    }
+    //Soma dos gastos
+    let somaGastos = 0
+    let valoresGasto = []
+    let itensGasto = buscarBDGastos()
+
+    //Colocar todos os valores no array e transformar em número
+    itensGasto.forEach((item) => {
+        valoresGasto.push(Number.parseFloat(item.valorGasto))
+    })
+
+    //Somar todos os numeros do array
+    for (let i = 0; i < valoresGasto.length; i++) {
+        somaGastos += valoresGasto[i]
+    }
+
+    //Saldos menos gastos
+    let resCaixa = somaSaldos - somaGastos
+
+    //Resultado do caixa
+    caixa.innerHTML = ''
+    iserirCaixa()
+    function iserirCaixa() {
+        let msgCaixa = document.createElement('p')
+        msgCaixa.innerHTML = `Caixa atual: R$ <p id="valor-caixa"> ${resCaixa.toFixed(2).replace(".", ",")}</p>`
+        return caixa.appendChild(msgCaixa)
+    }
 }
-carregarCaixa()
