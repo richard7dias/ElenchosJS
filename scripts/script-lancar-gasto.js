@@ -1,5 +1,6 @@
 const lancamentoContainer = document.querySelector('.lancamento-container')
 const tbody = document.querySelector('#tbody-lancados')
+const caption = document.querySelector('#caption')
 const data = document.getElementById('input-data')
 const descricao = document.getElementById('input-descricao')
 const categoria = document.getElementById('input-categoria')
@@ -8,31 +9,65 @@ const alerta = document.getElementById('alerta')
 const options = document.getElementById('input-categoria')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
-// const buscarBDcategoria = () => JSON.parse(localStorage.getItem(categoria.value) || '[]')
-// const editarBDcategoria = () => localStorage.setItem(categoria.value, JSON.stringify(gastoCat))
 let itens
-// let gastoCat
 let id
+
+carregarMesAtual()
+function carregarMesAtual() {
+    //Descobrir mês atual
+    let dataHoje = new Date()
+    let dataMes = dataHoje.getMonth()
+    let mesAtual
+
+    switch (dataMes) {
+        case 0:
+            mesAtual = 'Janeiro'
+            break
+        case 1:
+            mesAtual = 'Fevereiro'
+            break
+        case 2:
+            mesAtual = 'Março'
+            break
+        case 3:
+            mesAtual = 'Abril'
+            break
+        case 4:
+            mesAtual = 'Maio'
+            break
+        case 5:
+            mesAtual = 'Junho'
+            break
+        case 6:
+            mesAtual = 'Julho'
+            break
+        case 7:
+            mesAtual = 'Agosto'
+            break
+        case 8:
+            mesAtual = 'Setembro'
+            break
+        case 9:
+            mesAtual = 'Outubro'
+            break
+        case 10:
+            mesAtual = 'Novembro'
+            break
+        case 11:
+            mesAtual = 'Dezembro'
+            break
+    }
+
+    //Escrever na tela o mês
+    caption.innerHTML = `Lancamentos de ${mesAtual}`
+}
 
 carregarItens()
 function carregarItens() {
     itens = buscarBD()
-    // gastoCat = buscarBDcategoria()
     tbody.innerHTML = ''
     itens.forEach((item, index) => {
         inserirItemTabela(item, index)
-
-        //Todos os da mesma categoria vão para seu BD
-        // if (itens.categoria == gastoCat.categoria) {
-        //     gastoCat.push({
-        //         'data': itens.data,
-        //         'descricao': itens.descricao,
-        //         'categoria': itens.categoria,
-        //         'valor': itens.valor
-        //     })
-        // }
-
-
     })
 }
 

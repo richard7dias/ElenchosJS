@@ -1,5 +1,6 @@
 const novCatJanela = document.querySelector('.nova-categoria-janela')
 const tbody = document.querySelector('#tbody-orcamento')
+const caption = document.querySelector('#caption')
 const nome = document.getElementById('input-nome')
 const orcamento = document.getElementById('input-orcamento')
 const alerta = document.getElementById('alerta')
@@ -11,6 +12,55 @@ let id
 let lancamentos
 let resDisponivel
 
+carregarMesAtual()
+function carregarMesAtual() {
+    //Descobrir mês atual
+    let dataHoje = new Date()
+    let dataMes = dataHoje.getMonth()
+    let mesAtual
+
+    switch (dataMes) {
+        case 0:
+            mesAtual = 'Janeiro'
+            break
+        case 1:
+            mesAtual = 'Fevereiro'
+            break
+        case 2:
+            mesAtual = 'Março'
+            break
+        case 3:
+            mesAtual = 'Abril'
+            break
+        case 4:
+            mesAtual = 'Maio'
+            break
+        case 5:
+            mesAtual = 'Junho'
+            break
+        case 6:
+            mesAtual = 'Julho'
+            break
+        case 7:
+            mesAtual = 'Agosto'
+            break
+        case 8:
+            mesAtual = 'Setembro'
+            break
+        case 9:
+            mesAtual = 'Outubro'
+            break
+        case 10:
+            mesAtual = 'Novembro'
+            break
+        case 11:
+            mesAtual = 'Dezembro'
+            break
+    }
+
+    //Escrever na tela o mês
+    caption.innerHTML = `Orçamento de ${mesAtual}`
+}
 
 carregarItens()
 function carregarItens() {

@@ -117,15 +117,12 @@ function lancarSaldo() {
     idSaldo = undefined
 }
 
-
-
-
 //Funções Tabela Gastos
 carregarItensGasto()
 function carregarItensGasto() {
-    itensGasto = buscarBDGastos()
     tbodyGastos.innerHTML = ''
     inserirTabGastMes()
+    itensGasto = buscarBDGastos()
     itensGasto.forEach((item, index) => {
         inserirItemTabGasto(item, index)
     })
@@ -135,13 +132,14 @@ function carregarItensGasto() {
 
 function inserirTabGastMes() {
     //Somar mês atual disponível
-    let BDcategorias = buscarBDcat()
     let valoresDisp = []
+    let BDcategorias = buscarBDcat()
     //Colocar todos os valores no array e transformar em número
     BDcategorias.forEach((item) => {
         valoresDisp.push(Number.parseFloat(item.disponivel))
     })
     //Somar todos os numeros do array
+    resDisp = 0 //para não duplicar valor
     for (let i = 0; i < valoresDisp.length; i++) {
         resDisp += valoresDisp[i]
     }
@@ -149,7 +147,7 @@ function inserirTabGastMes() {
     //Escrever no tbodyGastos para ficar sempre fixo
     let tabela = document.createElement('tr')
     tabela.innerHTML = `
-    <td><p>Mês Atual</p></td>
+    <td><p>Disponível no Mês</p></td>
     <td><p class="valores">R$ ${resDisp.toFixed(2).replace(".", ",")}</p></td>
     <td class="acao"></td>`
     tbodyGastos.appendChild(tabela)
@@ -234,7 +232,8 @@ function lancarGasto() {
     idGasto = undefined
 }
 
-//Soma Saldos
+//Somas tfoots
+
 function somarSaldos() {
     const tfootSaldos = document.getElementById('tfoot-saldos')
     let resSaldos = 0
@@ -258,13 +257,12 @@ function somarSaldos() {
     function inserirSomaTab() {
         totalSaldos.innerHTML = `
         <td>Total</td>
-        <td>R$ <p class="valores">${resSaldos.toFixed(2).replace(".", ",")}</p></td>
+        <td><p class="valores">R$ ${resSaldos.toFixed(2).replace(".", ",")}</p></td>
         <td></td>`
         tfootSaldos.appendChild(totalSaldos)
     }
 }
 
-//Soma Gastos
 function somarGastos() {
     const tfootGastos = document.getElementById('tfoot-gastos')
     let resInicialGastos = 0
@@ -292,7 +290,7 @@ function somarGastos() {
     function inserirSomaTabGast() {
         totalGasto.innerHTML = `
         <td>Total</td>
-        <td>R$ <p class="valores">${resGastos.toFixed(2).replace(".", ",")}</p></td>
+        <td><p class="valores">R$ ${resGastos.toFixed(2).replace(".", ",")}</p></td>
         <td></td>`
         tfootGastos.appendChild(totalGasto)
     }

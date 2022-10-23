@@ -2,18 +2,31 @@
     background-color: white;
 }
 
-#gastos-gerais {
-    display: inline-block;
-    width: 49%;
-    height: 300px;
+.titulos {
     text-align: center;
-    padding-top: 10px;
+    margin-bottom: 20px;
 }
 
-#totais {
+#tot-categorias {
+    width: 35%;
     display: inline-block;
-    width: 49%;
-    height: 300px;
-    text-align: center;
-    padding-top: 10px;
+}
+
+#tot-mes {
+    width: 60%;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+@media (max-width: 730px) {
+
+    #tot-categorias,
+    #tot-mes {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #tot-mes {
+        margin-top: 70px;
+    }
 }
