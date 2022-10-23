@@ -35,7 +35,7 @@ btnEntrar.addEventListener('click', () => {
         msg.innerHTML = 'Preencha todos os campos!'
     } else if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
         alert(`Olá, ${validUsuario.nome}!`)
-        logar()
+        direcionar()
     } else {
         msg.innerHTML = 'Usuário e senha incorretos'
         email.setAttribute('style', 'border: 1px solid var(--cor5)')
@@ -43,3 +43,7 @@ btnEntrar.addEventListener('click', () => {
         email.focus()
     }
 })
+
+function direcionar() {
+    document.location = 'resumo.html'
+}

@@ -3,16 +3,23 @@ const tbody = document.querySelector('#tbody-orcamento')
 const nome = document.getElementById('input-nome')
 const orcamento = document.getElementById('input-orcamento')
 const alerta = document.getElementById('alerta')
-const buscarBD = () => JSON.parse(localStorage.getItem('categorias') || '[]')
-const editarBD = () => localStorage.setItem('categorias', JSON.stringify(itens))
+const buscarBDcat = () => JSON.parse(localStorage.getItem('categorias') || '[]')
+const editarBDcat = () => localStorage.setItem('categorias', JSON.stringify(itens))
+const buscarBDlan = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 let itens
 let id
+let lancamentos
+let resDisponivel
+
 
 carregarItens()
 function carregarItens() {
-    itens = buscarBD()
+    buscarBDlan()
+    itens = buscarBDcat()
     tbody.innerHTML = ''
     itens.forEach((item, index) => {
+        somarGasto(item, index)
+        somarDisponivel(item, index)
         inserirItemTabela(item, index)
     })
     somarTfoot()
@@ -21,18 +28,27 @@ function carregarItens() {
 function inserirItemTabela(item, index) {
     let tabela = document.createElement('tr')
 
-    //Converter valor de string em número
+    //Converter valor de string em número e os que já são números colocar o float2
     let numOrcamento = Number.parseFloat(item.orcamento).toFixed(2).replace(".", ",")
+    let numGasto = item.gasto.toFixed(2).replace(".", ",")
+    let numDisponivel = (item.disponivel).toFixed(2).replace(".", ",")
 
+    //Escrever no documento
     tabela.innerHTML = `
     <td>${item.nome}</td>
     <td><p class="valores">R$ ${numOrcamento}</p></td>
-    <td>gasto</td>
-    <td>disponivel</td>
+    <td><p class="gasto">R$ ${numGasto}</p></td>
+    <td><p class="valor-disponivel">R$ ${numDisponivel}</p></td>
     <td class="acao">
     <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>
     <button onclick="deletarItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
     </td>`
+
+    //Letra vermelha Disponível for negativo
+    if (resDisponivel < 0) {
+        tabela.classList.add('negativo')
+    }
+
     tbody.appendChild(tabela)
 }
 
@@ -40,7 +56,7 @@ function deletarItem(index) {
     let confirmar = confirm(`Deseja apagar a categoria ${itens[index].nome}?`)
     if (confirmar == true) {
         itens.splice(index, 1)
-        editarBD()
+        editarBDcat()
     }
     carregarItens()
 }
@@ -89,44 +105,108 @@ function lancar() {
     } else {
         itens.push({
             'nome': nome.value,
-            'orcamento': orcamento.value
+            'orcamento': orcamento.value,
+            'gasto': '',
+            'disponivel': ''
         })
     }
 
-    editarBD()
+    editarBDcat()
     novCatJanela.classList.remove('ativo')
     carregarItens()
     id = undefined
 }
 
-//Soma tfoot
-function somarTfoot() {
-    const tfoot = document.getElementById('tfoot-orcamento')
-    let resOrcamento = 0
-    let valoresOrcamento = []
-    let totalOrcamento = document.createElement('tr')
-    let itensOrcamento = buscarBD()
+function somarGasto(item, index) {
+    let valores = []
+    let nomeCategoria = item.nome
+    let resultado = 0
+    lancamentos = buscarBDlan()
 
-    //Colocar todos os valores no array e transformar em número
-    itensOrcamento.forEach((item) => {
-        valoresOrcamento.push(Number.parseFloat(item.orcamento))
+    //Conferir todas as categorias conforme o BD e colocar todos os valores na array de cada categoria
+    lancamentos.forEach((lanc) => {
+        if (nomeCategoria == lanc.categoria) {
+            //Já colocar dentro do array em número
+            valores.push(Number.parseFloat(lanc.valor))
+        }
     })
 
+    //Somar todos os números do array
+    for (let i = 0; i < valores.length; i++) {
+        resultado += valores[i]
+    }
+
+    //Inserir no BD através da array itens
+    itens[index].gasto = resultado
+    editarBDcat()
+}
+
+function somarDisponivel(item, index) {
+    let gasto = item.gasto
+    let orcamento = Number(item.orcamento)
+    resDisponivel = orcamento - gasto
+
+    //Inserir no BD através do resultado
+    itens[index].disponivel = resDisponivel
+    editarBDcat()
+}
+
+function somarTfoot() {
+    let BDcategorias = buscarBDcat()
+
+    //Somar Orcamento
+    let resOrcamento = 0
+    let valoresOrcamento = []
+    //Colocar todos os valores no array e transformar em número
+    BDcategorias.forEach((item) => {
+        valoresOrcamento.push(Number.parseFloat(item.orcamento))
+    })
     //Somar todos os numeros do array
     for (let i = 0; i < valoresOrcamento.length; i++) {
         resOrcamento += valoresOrcamento[i]
     }
 
+    //Somar Gasto
+    let resGasto = 0
+    let valoresGasto = []
+    //Colocar todos os valores no array e transformar em número
+    BDcategorias.forEach((item) => {
+        valoresGasto.push(Number.parseFloat(item.gasto))
+    })
+    //Somar todos os numeros do array
+    for (let i = 0; i < valoresGasto.length; i++) {
+        resGasto += valoresGasto[i]
+    }
+
+    //Somar Disponível
+    let resDisp = 0
+    let valoresDisp = []
+    //Colocar todos os valores no array e transformar em número
+    BDcategorias.forEach((item) => {
+        valoresDisp.push(Number.parseFloat(item.disponivel))
+    })
+    //Somar todos os numeros do array
+    for (let i = 0; i < valoresDisp.length; i++) {
+        resDisp += valoresDisp[i]
+    }
+
     //Escrever no tfoot o resultado da soma
+    const tfoot = document.getElementById('tfoot-orcamento')
+    let totais = document.createElement('tr')
     tfoot.innerHTML = ''
     inserirSomaTab()
     function inserirSomaTab() {
-        totalOrcamento.innerHTML = `
+        totais.innerHTML = `
         <td>Totais</td>
         <td><p class="valores">R$ ${resOrcamento.toFixed(2).replace(".", ",")}</p></td>
-        <td><p class="valores">R$ 0</p></td>
-        <td><p class="valores">R$ 0</p></td>
+        <td><p class="gasto">R$ ${resGasto.toFixed(2).replace(".", ",")}</p></td>
+        <td><p class="valor-disponivel">R$ ${resDisp.toFixed(2).replace(".", ",")}</p></td>
         <td></td>`
-        tfoot.appendChild(totalOrcamento)
+        tfoot.appendChild(totais)
+    }
+
+    //Letra vermelha Disponível for negativo
+    if (resDisp < 0) {
+        totais.classList.add('negativo')
     }
 }

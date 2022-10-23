@@ -118,6 +118,19 @@
     margin-top: 10px;
 }
 
+.gasto,
+.valor-disponivel {
+    color: var(--cor11);
+    float: right;
+    margin-right: 20px;
+}
+
+.gasto,
+.negativo,
+.negativo td .valor-disponivel {
+    color: var(--cor5);
+}
+
 @media (max-width: 730px) {
     #div-orcamento {
         width: 100%;

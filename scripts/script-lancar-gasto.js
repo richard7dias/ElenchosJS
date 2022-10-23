@@ -8,35 +8,32 @@ const alerta = document.getElementById('alerta')
 const options = document.getElementById('input-categoria')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
-const buscarBDcategoria = () => JSON.parse(localStorage.getItem(categoria.value) || '[]')
-const editarBDcategoria = () => localStorage.setItem(categoria.value, JSON.stringify(gastoCat))
+// const buscarBDcategoria = () => JSON.parse(localStorage.getItem(categoria.value) || '[]')
+// const editarBDcategoria = () => localStorage.setItem(categoria.value, JSON.stringify(gastoCat))
 let itens
-let gastoCat
+// let gastoCat
 let id
 
 carregarItens()
 function carregarItens() {
     itens = buscarBD()
-    gastoCat = buscarBDcategoria()
+    // gastoCat = buscarBDcategoria()
     tbody.innerHTML = ''
     itens.forEach((item, index) => {
         inserirItemTabela(item, index)
 
         //Todos os da mesma categoria vão para seu BD
-        if (itens.categoria == gastoCat.categoria) {
-            gastoCat.push({
-                'data': itens.data,
-                'descricao': itens.descricao,
-                'categoria': itens.categoria,
-                'valor': itens.valor
-            })
-        }
+        // if (itens.categoria == gastoCat.categoria) {
+        //     gastoCat.push({
+        //         'data': itens.data,
+        //         'descricao': itens.descricao,
+        //         'categoria': itens.categoria,
+        //         'valor': itens.valor
+        //     })
+        // }
+
+
     })
-
-
-
-
-
 }
 
 function inserirItemTabela(item, index) {
@@ -136,7 +133,7 @@ function lancar() {
     }
 
     editarBD()
-    lancamentoContainer.classList.remove('ativo')
+    fecharJanela()
     carregarItens()
     id = undefined
 }
