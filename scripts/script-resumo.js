@@ -26,15 +26,6 @@ const valorGasto = document.getElementById('input-valor-gasto')
 let itensGasto
 let idGasto
 
-
-
-
-
-
-
-
-
-
 //Funções Tabela Saldos
 carregarItensSaldo()
 function carregarItensSaldo() {

@@ -150,6 +150,7 @@ body {
 
 #conteudo {
     margin: 90px 10px 0 60px;
+    max-width: 1500px;
 }
 
 #barra-nav {
@@ -240,7 +241,8 @@ tbody tr {
 }
 
 .valores {
-    text-align: end;
+    display: flex;
+    float: right;
 }
 
 .colum-valor {
@@ -269,7 +271,7 @@ td button i {
 }
 
 footer {
-    margin: 20px 0 20px 200px;
+    margin: 20px 0 20px 55px;
     text-align: center;
 }
 
@@ -283,26 +285,55 @@ footer a:hover {
 }
 
 @media (max-width: 730px) {
+    * {
+        font-size: 0.9rem;
+    }
 
     #conteudo {
         margin: 85px 10px 0 60px;
     }
 
     #barra-nav {
-        margin-bottom: 8px;
+        margin-bottom: 7px;
     }
 
     .menu {
-        padding: 10px 5px 10px 5px;
-        font-size: 0.7rem;
+        padding: 7px 10px 7px 10px;
+        border-radius: 15px 15px 0px 0px;
     }
 
     .botoes {
-        width: 100%;
-        margin-top: 5px;
+        font-size: 0.8rem;
+        border-radius: 7px;
     }
 
-    footer {
-        margin: 20px 0 20px 55px;
+    #barra-lateral,
+    #menu-login,
+    .menu-login-fundo {
+        top: 4.7rem;
+    }
+
+    #icn-menu {
+        font-size: 1.1rem;
+        padding-top: 7px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    * {
+        font-size: 0.7rem;
+    }
+
+    #barra-lateral,
+    #menu-login,
+    .menu-login-fundo {
+        top: 5.9rem;
+    }
+
+    .botoes {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
     }
 }

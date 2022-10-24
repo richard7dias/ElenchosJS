@@ -4,8 +4,7 @@
 
 #div-orcamento {
     margin-top: 20px;
-    width: 70%;
-    display: inline-block;
+    max-width: 800px;
 }
 
 #colum-categoria {
@@ -15,11 +14,7 @@
 #colum-orcamento,
 #colum-gasto,
 #colum-disponivel {
-    width: 170px;
-}
-
-.valores {
-    margin-right: 20px;
+    width: 120px;
 }
 
 .nova-categoria-janela {
@@ -140,11 +135,4 @@
 .negativo,
 .negativo td .valor-disponivel {
     color: var(--cor5);
-}
-
-@media (max-width: 730px) {
-    #div-orcamento {
-        width: 100%;
-        display: block;
-    }
 }

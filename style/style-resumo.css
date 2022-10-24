@@ -2,6 +2,10 @@
     background-color: white;
 }
 
+#entradas-saidas{
+    max-width: 800px;
+}
+
 #gastos,
 #saldos {
     width: 49%;
