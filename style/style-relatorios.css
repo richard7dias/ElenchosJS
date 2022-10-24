@@ -2,20 +2,46 @@
     background-color: white;
 }
 
+#janela-escolhas-anos {
+    display: none;
+    background-color: var(--cor9);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    animation: janela-escolhas-anos 0.4s;
+}
+
+@keyframes janela-escolhas-anos {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -20px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
 .titulos {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 1rem;
 }
 
 #tot-categorias {
-    width: 35%;
-    display: inline-block;
+    width: 25%;
+    display: none;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 #tot-mes {
     width: 60%;
-    display: inline-block;
-    margin-left: 20px;
+    display: none;
+    margin-left: 70px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 730px) {
