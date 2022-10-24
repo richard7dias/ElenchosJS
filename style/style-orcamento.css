@@ -33,6 +33,7 @@
     z-index: 999;
     align-items: center;
     justify-content: center;
+    animation: nova-categoria-janela 0.3s;
 }
 
 .ativo {
@@ -41,6 +42,16 @@
 
 .ativo .nova-categoria {
     animation: nova-categoria 0.3s;
+}
+
+@keyframes nova-categoria-janela {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes nova-categoria {

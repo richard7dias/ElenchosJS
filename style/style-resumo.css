@@ -42,18 +42,37 @@
     z-index: 999;
     align-items: center;
     justify-content: center;
+    animation: janela-container-saldo 0.3s;
+    animation: janela-container-gasto 0.3s;
 }
 
 .ativo {
     display: flex;
 }
 
-.ativo .janela-saldo {
+.ativo .janela-saldo, .janela-gasto {
     animation: janela-saldo 0.3s;
+    animation: janela-gasto 0.3s;
 }
 
-.ativo .janela-gasto {
-    animation: janela-gasto 0.3s;
+@keyframes janela-container-saldo {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes janela-container-gasto {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes janela-saldo {

@@ -13,6 +13,7 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="scripts/script-orcamento.js" defer></script>
+    <script src="scripts/script-geral.js" defer></script>
 </head>
 
 <body>
@@ -21,11 +22,15 @@
     </header>
 
     <anside id="barra-lateral">
-        <div><i id="icn-menu" class="fa-solid fa-bars"></i></div>
-        <div id="btn-sair">
-            <a href="index.html">Sair</a>
-        </div>
+        <div onclick="abrirMenuLogin()"><i id="icn-menu" class="fa-solid fa-bars"></i></div>
     </anside>
+    <div class="menu-login-fundo">
+        <div id="menu-login">
+            <div id="btn-sair">
+                <a href="index.html">Sair</a>
+            </div>
+        </div>
+    </div>
     <div id="conteudo">
         <nav id="barra-nav">
             <a href="resumo.html" class="menu" id="resumo">Resumo</a>
