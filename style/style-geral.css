@@ -177,7 +177,7 @@ tbody tr {
 }
 
 .valores {
-    float: right;
+    text-align: end;
 }
 
 .colum-valor {
