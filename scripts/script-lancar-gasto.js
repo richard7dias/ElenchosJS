@@ -6,7 +6,6 @@ const descricao = document.getElementById('input-descricao')
 const categoria = document.getElementById('input-categoria')
 const valor = document.getElementById('input-valor')
 const alerta = document.getElementById('alerta')
-const options = document.getElementById('input-categoria')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
 let itens
@@ -83,7 +82,8 @@ function inserirItemTabela(item, index) {
     <td>${item.categoria}</td>
     <td><p class="valores">R$ ${numValor}</p></td>
     <td class="acao">
-    <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>    <button onclick="deletarItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
+    <button onclick="editarItem(${index})" class='btn-acao'><i class="fa-solid fa-pen"></i></button>
+    <button onclick="deletarItem(${index})" class='btn-acao'><i class="fa-solid fa-trash"></i></button>
     </td>`
     tbody.appendChild(tabela)
 }
@@ -117,11 +117,11 @@ function abrirJanela(editar = false, index = 0) {
     let itensCat = buscarBDcategorias()
 
     //Colocar as categorias do array para o documento
-    options.innerHTML = ''
+    categoria.innerHTML = ''
     itensCat.forEach((item) => {
         let categorias = document.createElement('option')
         categorias.innerHTML = `<option value="${item.nome}}">${item.nome}</option>`
-        options.appendChild(categorias)
+        categoria.appendChild(categorias)
     })
 
     if (editar) {
@@ -140,7 +140,7 @@ function abrirJanela(editar = false, index = 0) {
 
 function fecharJanela() {
     alerta.innerHTML = ''
-    options.innerHTML = ''
+    categoria.innerHTML = ''
     lancamentoContainer.classList.remove('ativo')
 }
 

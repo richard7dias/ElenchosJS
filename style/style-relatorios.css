@@ -2,16 +2,16 @@
     background-color: white;
 }
 
-#janela-escolhas-anos {
+#janela-escolhas {
     display: none;
     background-color: var(--cor9);
     border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
-    animation: janela-escolhas-anos 0.4s;
+    animation: janela-escolhas 0.4s;
 }
 
-@keyframes janela-escolhas-anos {
+@keyframes janela-escolhas {
     from {
         opacity: 0;
         transform: translate3d(0, -20px, 0);
@@ -21,6 +21,26 @@
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
+}
+
+#janela-escolhas p {
+    display: inline-block;
+}
+
+.inputs {
+    margin: 0 15px 0 2px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 130px;
+    background-color: var(--cor8);
+}
+
+#btn-relatorios {
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding: 3px 8px;
+    border-radius: 7px;
 }
 
 .titulos {
@@ -38,7 +58,7 @@
 }
 
 #tot-mes {
-    width: 60%;
+    width: 55%;
     display: none;
     margin-left: 70px;
     margin-bottom: 20px;

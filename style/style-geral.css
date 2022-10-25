@@ -294,17 +294,21 @@ footer a:hover {
     }
 
     #barra-nav {
-        margin-bottom: 7px;
+        margin-bottom: 6px;
     }
 
     .menu {
-        padding: 7px 10px 7px 10px;
+        font-size: 0.8rem;
+        padding: 7px 6px 7px 6px;
         border-radius: 15px 15px 0px 0px;
     }
 
     .botoes {
         font-size: 0.8rem;
         border-radius: 7px;
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
     }
 
     #barra-lateral,
@@ -319,7 +323,7 @@ footer a:hover {
     }
 }
 
-@media (max-width: 450px) {
+/* @media (max-width: 450px) {
 
     * {
         font-size: 0.7rem;
@@ -336,4 +340,4 @@ footer a:hover {
         width: 100%;
         margin-bottom: 5px;
     }
-}
+} */
