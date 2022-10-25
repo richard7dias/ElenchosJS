@@ -285,7 +285,8 @@ footer a:hover {
 }
 
 @media (max-width: 730px) {
-    * {
+
+    p {
         font-size: 0.9rem;
     }
 

@@ -22,9 +22,13 @@ let cores = [
     'rgb(0, 0, 0)']
 let todosAnos = []
 let todosMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+const divCat = document.getElementById('janela-categoria')
 
 //Variaveis e constantes janela anos
 let inputAnoDoAno
+let inputCategoria
+let categoriasRelatorio
+let nomeCategoriasRelatorio
 
 //Variaveis e constantes janela meses
 let inputMes
@@ -52,9 +56,15 @@ function carregarAnos() {
 //Janelas botões
 //Relatórios por ano
 function janelaAnos() {
-    //Limpar se houver grafico e inserir divs
+    //Limpar se houver dados e inserir divs
     const divRes = document.getElementById('resultados')
     divRes.innerHTML = ''
+    const divResultadosCat = document.getElementById('resultados-categorias')
+    divResultadosCat.innerHTML = ''
+    divCat.innerHTML = ''
+    divCat.setAttribute('style', 'display: none')
+
+    //Inserir divs
     let res = document.createElement('p')
     res.innerHTML = `
     <div id="tot-categorias">
@@ -94,9 +104,15 @@ function janelaAnos() {
 
 //Relatórios por mês
 function janelaMeses() {
-    //Limpar se houver grafico e inserir divs
+    //Limpar se houver dados
     const divRes = document.getElementById('resultados')
     divRes.innerHTML = ''
+    const divResultadosCat = document.getElementById('resultados-categorias')
+    divResultadosCat.innerHTML = ''
+    divCat.innerHTML = ''
+    divCat.setAttribute('style', 'display: none')
+
+    //Inserir divs
     let res = document.createElement('p')
     res.innerHTML = `
     <div id="tot-categorias">
@@ -148,7 +164,7 @@ function janelaMeses() {
 function visualizarRelatorioAno() {
     categoriasPorAno(inputAnoDoAno.value)
     totaisMesPorAno(inputAnoDoAno.value)
-    menuCategorias()
+    menuCategorias(inputAnoDoAno.value)
 }
 
 function visualizarRelatorioMes() {
@@ -158,10 +174,6 @@ function visualizarRelatorioMes() {
 //Graficos - padrão por ano
 //Categorias em gráfico de pizza
 function categoriasPorAno(ano) {
-    //Mostrar tabela
-    const janela = document.getElementById('tot-categorias')
-    janela.setAttribute('style', 'display: inline-block')
-
     //Escrever título
     let titulo = document.getElementById('titulo-categorias')
     titulo.innerHTML = ''
@@ -246,10 +258,6 @@ function categoriasPorAno(ano) {
 
 //Totais por mês em gráfico de coluna
 function totaisMesPorAno(ano) {
-    //Mostrar tabela
-    const janela = document.getElementById('tot-mes')
-    janela.setAttribute('style', 'display: inline-block')
-
     //Título
     const titulo = document.getElementById('titulo-por-mes')
     titulo.innerHTML = ''
@@ -259,7 +267,7 @@ function totaisMesPorAno(ano) {
 
     //Variáveis e arrays
     let lancamentosMes = []
-    let jan = []; let fev = []; let mar = []; let abr = []; let mai = []; let jun = []; let jul = []; let ago = []; let set = []; let out = []; let nov = []; let dez = []
+    let jan = 0; let fev = 0; let mar = 0; let abr = 0; let mai = 0; let jun = 0; let jul = 0; let ago = 0; let set = 0; let out = 0; let nov = 0; let dez = 0
     let janSoma = 0; let fevSoma = 0; let marSoma = 0; let abrSoma = 0; let maiSoma = 0; let junSoma = 0; let julSoma = 0; let agoSoma = 0; let setSoma = 0; let outSoma = 0; let novSoma = 0; let dezSoma = 0
 
     //Colocar todos os meses e valores na array
@@ -275,85 +283,47 @@ function totaisMesPorAno(ano) {
     lancamentosMes.forEach((item) => {
         switch (item.mes) {
             case 1:
-                jan.push(item.valor)
+                jan += item.valor
                 break
             case 2:
-                fev.push(item.valor)
+                fev += item.valor
                 break
             case 3:
-                mar.push(item.valor)
+                mar += item.valor
                 break
             case 4:
-                abr.push(item.valor)
+                abr += item.valor
                 break
             case 5:
-                mai.push(item.valor)
+                mai += item.valor
                 break
             case 6:
-                jun.push(item.valor)
+                jun += item.valor
                 break
             case 7:
-                jul.push(item.valor)
+                jul += item.valor
                 break
             case 8:
-                ago.push(item.valor)
+                ago += item.valor
                 break
             case 9:
-                set.push(item.valor)
+                set += item.valor
                 break
             case 10:
-                out.push(item.valor)
+                out += item.valor
                 break
             case 11:
-                nov.push(item.valor)
+                nov += item.valor
                 break
             case 12:
-                dez.push(item.valor)
+                dez += item.valor
                 break
         }
     })
 
-    //Somar todos os arrays dos meses
-    for (let i = 0; i < jan.length; i++) {
-        janSoma += jan[i]
-    }
-    for (let i = 0; i < fev.length; i++) {
-        fevSoma += fev[i]
-    }
-    for (let i = 0; i < mar.length; i++) {
-        marSoma += mar[i]
-    }
-    for (let i = 0; i < abr.length; i++) {
-        abrSoma += abr[i]
-    }
-    for (let i = 0; i < mai.length; i++) {
-        maiSoma += mai[i]
-    }
-    for (let i = 0; i < jun.length; i++) {
-        junSoma += jun[i]
-    }
-    for (let i = 0; i < jul.length; i++) {
-        julSoma += jul[i]
-    }
-    for (let i = 0; i < ago.length; i++) {
-        agoSoma += ago[i]
-    }
-    for (let i = 0; i < set.length; i++) {
-        setSoma += set[i]
-    }
-    for (let i = 0; i < out.length; i++) {
-        outSoma += out[i]
-    }
-    for (let i = 0; i < nov.length; i++) {
-        novSoma += nov[i]
-    }
-    for (let i = 0; i < dez.length; i++) {
-        dezSoma += dez[i]
-    }
-
     //Colocar soma dos meses no array
     let somaMeses = []
-    somaMeses.push(janSoma, fevSoma, marSoma, abrSoma, maiSoma, junSoma, julSoma, agoSoma, setSoma, outSoma, novSoma, dezSoma)
+    somaMeses.push(jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez)
 
     //Criar Chart
     let inserirCanvas = document.getElementById('inserir-canvas-mes')
@@ -379,10 +349,6 @@ function totaisMesPorAno(ano) {
 //Graficos - padrão por mes
 //Categorias em gráfico de pizza
 function categoriasPorMes(mes, ano) {
-    //Mostrar tabela
-    const janela = document.getElementById('tot-categorias')
-    janela.setAttribute('style', 'display: inline-block')
-
     //Escrever título
     let titulo = document.getElementById('titulo-categorias')
     titulo.innerHTML = ''
@@ -487,21 +453,14 @@ function categoriasPorMes(mes, ano) {
     totaisCatPorMes(nomeCategorias, somaCategorias, mes, ano)
 }
 
-
 //Totais por categorias em gráfico de coluna
 function totaisCatPorMes(nomes, soma, mes, ano) {
-    //Mostrar tabela
-    const janelaMesCat = document.getElementById('tot-mes')
-    janelaMesCat.setAttribute('style', 'display: inline-block')
-
     //Título
     const tituloMes = document.getElementById('titulo-por-mes')
     tituloMes.innerHTML = ''
     const titMes = document.createElement('h3')
     titMes.innerHTML = `<h3 class="titulos">Categorias de ${mes} de ${ano}</h3>`
     tituloMes.appendChild(titMes)
-
-
 
     //Criar Chart
     let inserirCanvasMes = document.getElementById('inserir-canvas-mes')
@@ -524,12 +483,156 @@ function totaisCatPorMes(nomes, soma, mes, ano) {
     })
 }
 
-function menuCategorias() {
-    const divCat = document.getElementById('totais-por-categoria')
+function menuCategorias(ano) {
+    //Limpar dados se houver e colocar divs
     divCat.innerHTML = ''
     let escrever = document.createElement('p')
     escrever.innerHTML = `
-    teste
+    <h3>Relatório por categoria específica de ${ano}</h3>
+    <p>Escolha a categoria:</p>
+    <select class="inputs" id="input-categorias"></select>
+    <buttom class="botoes" id="btn-relatorios-cat" onclick="visualizarRelatorioCat(${ano})">Visualizar relatório</buttom>
     `
     divCat.appendChild(escrever)
+
+    //Mostrar janela menu
+    divCat.setAttribute('style', 'display: flex')
+
+    //Arrays
+    categoriasRelatorio = []
+    let nomeCatRepetidos = []
+
+    //Colocar nome das categorias dentro do array pelo ano selecionado e filtrar ano
+    bdLancamentos.forEach((item) => {
+        if (item.data.substring(0, 4) == ano) {
+            categoriasRelatorio.push({
+                'categoria': item.categoria,
+                'valor': item.valor,
+                'mes': item.data.substring(5, 7)
+            })
+            nomeCatRepetidos.push(item.categoria)
+        }
+    })
+
+    //Separar nome categorias repetidas em um array sem repetições - para ficar com as categorias que foram usadas
+    nomeCategoriasRelatorio = nomeCatRepetidos.filter(function (el, i) {
+        return nomeCatRepetidos.indexOf(el) === i
+    })
+
+    //Escrever categorias do array nos options
+    inputCategoria = document.getElementById('input-categorias')
+    inputCategoria.innerHTML = ''
+    nomeCategoriasRelatorio.forEach((item) => {
+        let cats = document.createElement('option')
+        cats.innerHTML = `<option value="${item}}">${item}</option>`
+        inputCategoria.appendChild(cats)
+    })
+
+    // //Fazer média das categorias
+    // let mediaCategorias = []
+
+    // nomeCategoriasRelatorio.forEach((nome) => {
+    //     let valores = []
+    //     let soma = 0
+    //     categoriasRelatorio.forEach((item) => {
+    //         if (nome == item.categoria) {
+    //             valores.push(Number(item.valor))
+    //         }
+    //     })
+
+    //     for (let i = 0; i < valores.length; i++) {
+    //         soma += valores[i]
+    //     }
+
+    //     let media = soma / valores.length
+    //     mediaCategorias.push(media.toFixed(2))
+    // })
+
+    // console.log(mediaCategorias)
+}
+
+function visualizarRelatorioCat(ano) {
+    const divResultadosCat = document.getElementById('resultados-categorias')
+    divResultadosCat.innerHTML = ''
+
+    //Título
+    const titCat = document.createElement('h3')
+    titCat.innerHTML = `<h3 class="titulos">${inputCategoria.value} - ${ano}</h3>`
+    divResultadosCat.appendChild(titCat)
+
+    //Colocar categoria selecionada pelo usuário no array
+    let categoriaSelecionada = []
+    categoriasRelatorio.forEach((item) => {
+        if (item.categoria == inputCategoria.value) {
+            categoriaSelecionada.push(item)
+        }
+    })
+
+    //Separar por mês
+    //Arays dos meses
+    let jan = 0; let fev = 0; let mar = 0; let abr = 0; let mai = 0; let jun = 0; let jul = 0; let ago = 0; let set = 0; let out = 0; let nov = 0; let dez = 0
+
+    //Separar objeto no mês do array
+    categoriaSelecionada.forEach((item) => {
+        switch (item.mes) {
+            case '01':
+                jan += item.valor
+                break
+            case '02':
+                fev += item.valor
+                break
+            case '03':
+                mar += item.valor
+                break
+            case '04':
+                abr += item.valor
+                break
+            case '05':
+                mai += item.valor
+                break
+            case '06':
+                jun += item.valor
+                break
+            case '07':
+                jul += item.valor
+                break
+            case '08':
+                ago += item.valor
+                break
+            case '09':
+                set += item.valor
+                break
+            case '10':
+                out += item.valor
+                break
+            case '11':
+                nov += item.valor
+                break
+            case '12':
+                dez += item.valor
+                break
+        }
+    })
+
+    //Guardar somas em ordem dos meses
+    let somaCat = []
+    somaCat.push(jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez)
+
+    //Criar Chart
+    let canvas = document.createElement('p')
+    canvas.innerHTML = '<div id="div-relatorio-categorias"><canvas id="relatorio-categorias"></canvas></div>'
+    divResultadosCat.appendChild(canvas)
+
+    let ctxRelatorioCat = document.getElementById('relatorio-categorias')
+    let relCat = new Chart(ctxRelatorioCat, {
+        type: 'bar',
+        data: {
+            labels: todosMeses,
+            datasets: [{
+                label: 'Total da categoria',
+                data: somaCat,
+                backgroundColor: cores,
+            }]
+        },
+    })
 }

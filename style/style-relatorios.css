@@ -2,7 +2,7 @@
     background-color: white;
 }
 
-#janela-escolhas {
+.janelas-escolhas {
     display: none;
     background-color: var(--cor9);
     border-radius: 10px;
@@ -23,20 +23,29 @@
     }
 }
 
-#janela-escolhas p {
+.janelas-escolhas p {
     display: inline-block;
 }
 
+#janela-categoria h3 {
+    margin-bottom: 10px;
+}
+
 .inputs {
-    margin: 0 15px 0 2px;
+    margin: 0 5px 0 2px;
     padding-left: 5px;
     border-radius: 5px;
     border: none;
-    width: 130px;
+    width: 95px;
     background-color: var(--cor8);
 }
 
-#btn-relatorios {
+#input-categorias {
+    width: 150px;
+}
+
+#btn-relatorios,
+#btn-relatorios-cat {
     font-size: 0.9rem;
     font-weight: normal;
     padding: 3px 8px;
@@ -52,27 +61,55 @@
 
 #tot-categorias {
     width: 25%;
-    display: none;
+    display: inline-block;
     margin-left: 20px;
     margin-bottom: 20px;
 }
 
 #tot-mes {
     width: 55%;
-    display: none;
+    display: inline-block;
     margin-left: 70px;
     margin-bottom: 20px;
 }
 
+#resultados-categorias {
+    margin-top: 20px;
+}
+
+#div-relatorio-categorias {
+    width: 55%;
+}
+
 @media (max-width: 730px) {
 
-    #tot-categorias,
-    #tot-mes {
+    .janelas-escolhas {
+        display: flex;
+        justify-content: center;
+    }
+
+    .janelas-escolhas buttom {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .inputs {
+        font-size: 0.8rem;
+        width: 85px;
+    }
+
+    #tot-categorias {
         width: 100%;
-        margin-left: 0;
+        margin: auto;
     }
 
     #tot-mes {
-        margin-top: 70px;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 40px;
+    }
+
+    #div-relatorio-categorias {
+        width: 100%;
     }
 }
