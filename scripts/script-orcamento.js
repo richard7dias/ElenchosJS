@@ -7,60 +7,59 @@ const alerta = document.getElementById('alerta')
 const buscarBDcat = () => JSON.parse(localStorage.getItem('categorias') || '[]')
 const editarBDcat = () => localStorage.setItem('categorias', JSON.stringify(itens))
 const buscarBDlan = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
-const editarBDlan = () => localStorage.setItem('categorias', JSON.stringify(lancamentos))
+const editarBDlan = () => localStorage.setItem('lancamentos', JSON.stringify(lancamentos))
 let itens
 let id
 let lancamentos
 let resDisponivel
 
+//Descobrir data atual
+let dataHoje = new Date()
+let dataAno = dataHoje.getFullYear()
+let dataMes = dataHoje.getMonth() + 1
+let mesAtual
 carregarMesAtual()
 function carregarMesAtual() {
-    //Descobrir mês atual
-    let dataHoje = new Date()
-    let dataMes = dataHoje.getMonth()
-    let mesAtual
-
     switch (dataMes) {
-        case 0:
+        case 1:
             mesAtual = 'Janeiro'
             break
-        case 1:
+        case 2:
             mesAtual = 'Fevereiro'
             break
-        case 2:
+        case 3:
             mesAtual = 'Março'
             break
-        case 3:
+        case 4:
             mesAtual = 'Abril'
             break
-        case 4:
+        case 5:
             mesAtual = 'Maio'
             break
-        case 5:
+        case 6:
             mesAtual = 'Junho'
             break
-        case 6:
+        case 7:
             mesAtual = 'Julho'
             break
-        case 7:
+        case 8:
             mesAtual = 'Agosto'
             break
-        case 8:
+        case 9:
             mesAtual = 'Setembro'
             break
-        case 9:
+        case 10:
             mesAtual = 'Outubro'
             break
-        case 10:
+        case 11:
             mesAtual = 'Novembro'
             break
-        case 11:
+        case 12:
             mesAtual = 'Dezembro'
             break
     }
-
     //Escrever na tela o mês
-    caption.innerHTML = `Orçamento de ${mesAtual}`
+    caption.innerHTML = `Orçamento de ${mesAtual} de ${dataAno}`
 }
 
 carregarItens()
@@ -152,6 +151,7 @@ function lancar() {
 
     lancamentos = buscarBDlan()
     if (id !== undefined) {
+        //Quando for editado o nome da categoria, atualizar BD Lancamentos as categorias tb
         let catBDcat = itens[id].nome
         if (nome.value !== catBDcat) {
             lancamentos.forEach((item) => {
@@ -182,7 +182,14 @@ function somarGasto(item, index) {
     let valores = []
     let nomeCategoria = item.nome
     let resultado = 0
-    lancamentos = buscarBDlan()
+    let todosLancamentos = buscarBDlan()
+    lancamentos = []
+
+    // Filtrar apenas lancamentos do mes atual
+    todosLancamentos.forEach((item) => {
+        if (item.data.substring(0, 4) == dataAno && item.data.substring(5, 7) == dataMes)
+            lancamentos.push(item)
+    })
 
     //Conferir todas as categorias conforme o BD e colocar todos os valores na array de cada categoria
     lancamentos.forEach((lanc) => {

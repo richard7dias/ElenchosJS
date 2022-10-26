@@ -21,16 +21,26 @@ let cores = [
 let todosAnos = []
 let todosMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 const divCat = document.getElementById('janela-categoria')
+const divRes = document.getElementById('resultados')
+const divResultadosCat = document.getElementById('resultados-categorias')
+let itensCres
 
 //Variaveis e constantes janela anos
 let inputAnoDoAno
 let inputCategoria
 let categoriasRelatorio
 let nomeCategoriasRelatorio
+const tabLancCat = document.getElementById('lancados-cat')
+const captionLancadosCat = document.getElementById('caption-cat')
+const tbodyCat = document.getElementById('tbody-lancados-cat')
 
 //Variaveis e constantes janela meses
 let inputMes
 let inputAnoDoMes
+let mesNumero
+const tabLancMes = document.getElementById('lancados')
+const captionLancadosMes = document.getElementById('caption-mes')
+const tbodyMes = document.getElementById('tbody-lancados-mes')
 
 //Funnções necessárias ao abrir a página
 carregarAnos()
@@ -55,12 +65,13 @@ function carregarAnos() {
 //Relatórios por ano
 function janelaAnos() {
     //Limpar se houver dados e inserir divs
-    const divRes = document.getElementById('resultados')
     divRes.innerHTML = ''
-    const divResultadosCat = document.getElementById('resultados-categorias')
     divResultadosCat.innerHTML = ''
     divCat.innerHTML = ''
+    tbodyCat.innerHTML = ''
     divCat.setAttribute('style', 'display: none')
+    tabLancMes.setAttribute('style', 'display: none')
+    tabLancCat.setAttribute('style', 'display: none')
 
     //Inserir divs
     let res = document.createElement('p')
@@ -103,12 +114,12 @@ function janelaAnos() {
 //Relatórios por mês
 function janelaMeses() {
     //Limpar se houver dados
-    const divRes = document.getElementById('resultados')
     divRes.innerHTML = ''
-    const divResultadosCat = document.getElementById('resultados-categorias')
     divResultadosCat.innerHTML = ''
     divCat.innerHTML = ''
     divCat.setAttribute('style', 'display: none')
+    tabLancMes.setAttribute('style', 'display: none')
+    tabLancCat.setAttribute('style', 'display: none')
 
     //Inserir divs
     let res = document.createElement('p')
@@ -167,6 +178,7 @@ function visualizarRelatorioAno() {
 
 function visualizarRelatorioMes() {
     categoriasPorMes(inputMes.value, inputAnoDoMes.value)
+    lancamentosPorMes(inputMes.value, inputAnoDoMes.value)
 }
 
 //Graficos - padrão por ano
@@ -355,7 +367,6 @@ function categoriasPorMes(mes, ano) {
     titulo.appendChild(tit)
 
     //Trocar nome do mes de strting para número
-    let mesNumero
     switch (mes) {
         case 'Janeiro':
             mesNumero = 1
@@ -528,8 +539,8 @@ function menuCategorias(ano) {
 }
 
 function visualizarRelatorioCat(ano) {
-    const divResultadosCat = document.getElementById('resultados-categorias')
     divResultadosCat.innerHTML = ''
+    tbodyCat.innerHTML = ''
 
     //Título
     const titCat = document.createElement('h3')
@@ -610,5 +621,110 @@ function visualizarRelatorioCat(ano) {
                 backgroundColor: cores,
             }]
         },
+    })
+    tabelaCategoria(ano)
+}
+
+function tabelaCategoria(ano) {
+    //Visualizar tabela e limpar dados se houver
+    tabLancCat.setAttribute('style', 'display: block')
+
+    //Filtrar array e colocar em um novo array em ordem crescente
+    let lancFiltrados = []
+    bdLancamentos.forEach((item) => {
+        if (item.categoria == inputCategoria.value && item.data.substring(0, 4) == ano) {
+            lancFiltrados.push({
+                'data': item.data,
+                'descricao': item.descricao,
+                'valor': item.valor
+            })
+        }
+    })
+    ordenarCresData(lancFiltrados)
+
+    //Escrever título tabela
+    captionLancadosCat.innerHTML = ''
+    captionLancadosCat.innerHTML = `Lançamentos de ${inputCategoria.value} de ${ano}`
+    //Escrever tabela
+    itensCres.forEach((item) => {
+        let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
+        let tabela = document.createElement('tr')
+        tabela.innerHTML = `
+        <td>${item.data.split('-').reverse().join('/')}</td>
+        <td>${item.descricao}</td>
+        <td><p class="valores">R$ ${numValor}</p></td>`
+        tbodyCat.appendChild(tabela)
+
+    })
+}
+
+function lancamentosPorMes(mes, ano) {
+    //Visualizar tabela e limpar dados se houver
+    tabLancMes.setAttribute('style', 'display: block')
+    tbodyMes.innerHTML = ''
+
+    //Filtrar array e colocar em um novo array em ordem crescente
+    let lancFiltrados = []
+    bdLancamentos.forEach((item) => {
+        if (item.data.substring(0, 4) == ano && item.data.substring(5, 7) == mesNumero) {
+            lancFiltrados.push({
+                'data': item.data,
+                'descricao': item.descricao,
+                'categoria': item.categoria,
+                'valor': item.valor
+            })
+        }
+    })
+    ordenarCresData(lancFiltrados)
+
+    //Escrever título tabela
+    captionLancadosMes.innerHTML = ''
+    captionLancadosMes.innerHTML = `Lançamentos de ${mes} de ${ano}`
+    //Escrever tabela
+    itensCres.forEach((item) => {
+        let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
+        let tabela = document.createElement('tr')
+        tabela.innerHTML = `
+        <td>${item.data.split('-').reverse().join('/')}</td>
+        <td>${item.descricao}</td>
+        <td>${item.categoria}</td>
+        <td><p class="valores">R$ ${numValor}</p></td>`
+        tbodyMes.appendChild(tabela)
+    })
+}
+
+function ordenarCresData(lanc) {
+    itensCres = lanc
+    let ordemNumero = []
+    //Separar ano, mês e dia em número
+    itensCres.forEach((item) => {
+        ordemNumero.push({
+            'dia': Number(item.data.substring(8, 10)),
+            'mes': Number(item.data.substring(5, 7)),
+            'ano': Number(item.data.substring(0, 4)),
+            'descricao': item.descricao,
+            'categoria': item.categoria,
+            'valor': item.valor
+        })
+    })
+    //Ordenar o array novo
+    ordemNumero.sort(function (a, b) {
+        return a.dia - b.dia
+    })
+    ordemNumero.sort(function (a, b) {
+        return a.mes - b.mes
+    })
+    ordemNumero.sort(function (a, b) {
+        return a.ano - b.ano
+    })
+    // Atualizar objetos em ordem
+    itensCres = []
+    ordemNumero.forEach((item) => {
+        itensCres.push({
+            'data': `${item.ano}-${item.mes}-${item.dia}`,
+            'descricao': item.descricao,
+            'categoria': item.categoria,
+            'valor': item.valor
+        })
     })
 }

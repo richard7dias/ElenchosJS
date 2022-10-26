@@ -74,8 +74,19 @@
 }
 
 #resultados-categorias {
+    display: inline-block;
     margin-top: 20px;
     width: 55%;
+}
+
+#lancados {
+    display: none;
+}
+
+#lancados-cat {
+    display: none;
+    margin: 20px 0 0 30px;
+    max-width: 610px;
 }
 
 @media (max-width: 730px) {
@@ -111,6 +122,11 @@
     }
 
     #resultados-categorias {
+        display: inline-block;
         width: 100%;
+    }
+
+    #lancados-cat {
+        margin: 20px 0 0 0;
     }
 }

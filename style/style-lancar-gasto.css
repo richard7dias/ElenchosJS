@@ -15,6 +15,10 @@
     cursor: pointer;
 }
 
+#troca-btns {
+    display: inline-block;
+}
+
 #btn-lancar:hover,
 #novo-gasto:hover {
     background-color: var(--cor3);
@@ -113,4 +117,11 @@
 
 .lancamento>p {
     margin-top: 10px;
+}
+
+@media (max-width: 730px) {
+
+    #troca-btns {
+        width: 100%;
+    }
 }

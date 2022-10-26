@@ -246,6 +246,10 @@ tbody tr {
     float: right;
 }
 
+.colum-data {
+    width: 100px;
+}
+
 .colum-valor {
     width: 110px;
     text-align: center;
@@ -263,22 +267,6 @@ tbody tr {
     cursor: pointer;
     padding: 5px 3px 2px 3px;
     margin-right: 10px;
-}
-
-.fa-sort-down,
-.fa-sort-up {
-    margin: 0 2px;
-    cursor: pointer;
-}
-
-.fa-sort-down:hover,
-.fa-sort-up:hover {
-    color: var(--cor3);
-}
-
-.fa-sort-down:active,
-.fa-sort-up:active {
-    color: var(--cor1);
 }
 
 td button i {

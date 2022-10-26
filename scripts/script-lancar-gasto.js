@@ -8,62 +8,13 @@ const valor = document.getElementById('input-valor')
 const alerta = document.getElementById('alerta')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
-let itens
+let itens = buscarBD()
 let id
 
-carregarMesAtual()
-function carregarMesAtual() {
-    //Descobrir mês atual
-    let dataHoje = new Date()
-    let dataMes = dataHoje.getMonth()
-    let mesAtual
 
-    switch (dataMes) {
-        case 0:
-            mesAtual = 'Janeiro'
-            break
-        case 1:
-            mesAtual = 'Fevereiro'
-            break
-        case 2:
-            mesAtual = 'Março'
-            break
-        case 3:
-            mesAtual = 'Abril'
-            break
-        case 4:
-            mesAtual = 'Maio'
-            break
-        case 5:
-            mesAtual = 'Junho'
-            break
-        case 6:
-            mesAtual = 'Julho'
-            break
-        case 7:
-            mesAtual = 'Agosto'
-            break
-        case 8:
-            mesAtual = 'Setembro'
-            break
-        case 9:
-            mesAtual = 'Outubro'
-            break
-        case 10:
-            mesAtual = 'Novembro'
-            break
-        case 11:
-            mesAtual = 'Dezembro'
-            break
-    }
-
-    //Escrever na tela o mês
-    caption.innerHTML = `Lançamentos de ${mesAtual}`
-}
 
 carregarItens()
 function carregarItens() {
-    itens = buscarBD()
     tbody.innerHTML = ''
     itens.forEach((item, index) => {
         inserirItemTabela(item, index)
@@ -71,11 +22,11 @@ function carregarItens() {
 }
 
 function inserirItemTabela(item, index) {
-    let tabela = document.createElement('tr')
-
     //Converter valor de string em número
     let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
 
+    //Escrever tabela
+    let tabela = document.createElement('tr')
     tabela.innerHTML = `
     <td>${item.data.split('-').reverse().join('/')}</td>
     <td>${item.descricao}</td>
@@ -136,6 +87,7 @@ function abrirJanela(editar = false, index = 0) {
         categoria.value = ''
         valor.value = ''
     }
+    data.focus()
 }
 
 function fecharJanela() {
@@ -159,24 +111,18 @@ function lancar() {
         itens[id].categoria = categoria.value
         itens[id].valor = valor.value
     } else {
+        itens.reverse()
         itens.push({
             'data': data.value,
             'descricao': descricao.value,
             'categoria': categoria.value,
             'valor': valor.value
         })
+        itens.reverse()
     }
 
     editarBD()
     fecharJanela()
     carregarItens()
     id = undefined
-}
-
-function ordenarCresData() {
-
-}
-
-function ordenarDecrData() {
-    console.log('decrescente')
 }
