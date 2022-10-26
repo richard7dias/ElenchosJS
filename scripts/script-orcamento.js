@@ -7,6 +7,7 @@ const alerta = document.getElementById('alerta')
 const buscarBDcat = () => JSON.parse(localStorage.getItem('categorias') || '[]')
 const editarBDcat = () => localStorage.setItem('categorias', JSON.stringify(itens))
 const buscarBDlan = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
+const editarBDlan = () => localStorage.setItem('categorias', JSON.stringify(lancamentos))
 let itens
 let id
 let lancamentos
@@ -149,7 +150,16 @@ function lancar() {
     }
     alerta.innerHTML = ''
 
+    lancamentos = buscarBDlan()
     if (id !== undefined) {
+        let catBDcat = itens[id].nome
+        if (nome.value !== catBDcat) {
+            lancamentos.forEach((item) => {
+                if (item.categoria == catBDcat) {
+                    item.categoria = nome.value
+                }
+            })
+        }
         itens[id].nome = nome.value
         itens[id].orcamento = orcamento.value
     } else {
@@ -161,6 +171,7 @@ function lancar() {
         })
     }
 
+    editarBDlan()
     editarBDcat()
     novCatJanela.classList.remove('ativo')
     carregarItens()

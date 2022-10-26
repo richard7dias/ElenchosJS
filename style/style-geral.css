@@ -265,6 +265,22 @@ tbody tr {
     margin-right: 10px;
 }
 
+.fa-sort-down,
+.fa-sort-up {
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.fa-sort-down:hover,
+.fa-sort-up:hover {
+    color: var(--cor3);
+}
+
+.fa-sort-down:active,
+.fa-sort-up:active {
+    color: var(--cor1);
+}
+
 td button i {
     font-size: 1rem;
     color: var(--cor2);
@@ -291,18 +307,23 @@ footer a:hover {
         font-size: 0.9rem;
     }
 
+    table,
+    .valores {
+        font-size: 0.8rem;
+    }
+
     #conteudo {
-        margin: 85px 10px 0 60px;
+        margin: 80px 10px 0 60px;
     }
 
     #barra-nav {
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
 
     .menu {
-        font-size: 0.8rem;
-        padding: 7px 6px 7px 6px;
-        border-radius: 15px 15px 0px 0px;
+        font-size: 0.75rem;
+        padding: 5px 3px;
+        border-radius: 10px 10px 0px 0px;
     }
 
     .botoes {
@@ -316,30 +337,6 @@ footer a:hover {
     #barra-lateral,
     #menu-login,
     .menu-login-fundo {
-        top: 4.7rem;
-    }
-
-    #icn-menu {
-        font-size: 1.1rem;
-        padding-top: 7px;
+        top: 4.3rem;
     }
 }
-
-/* @media (max-width: 450px) {
-
-    * {
-        font-size: 0.7rem;
-    }
-
-    #barra-lateral,
-    #menu-login,
-    .menu-login-fundo {
-        top: 5.9rem;
-    }
-
-    .botoes {
-        display: block;
-        width: 100%;
-        margin-bottom: 5px;
-    }
-} */

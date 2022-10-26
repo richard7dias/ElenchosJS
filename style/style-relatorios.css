@@ -81,7 +81,7 @@
 @media (max-width: 730px) {
 
     .janelas-escolhas {
-        display: flex;
+        display: none;
         justify-content: center;
     }
 
@@ -107,6 +107,10 @@
     }
 
     #div-relatorio-categorias {
+        width: 100%;
+    }
+
+    #resultados-categorias {
         width: 100%;
     }
 }

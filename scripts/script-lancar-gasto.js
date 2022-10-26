@@ -58,7 +58,7 @@ function carregarMesAtual() {
     }
 
     //Escrever na tela o mês
-    caption.innerHTML = `Lancamentos de ${mesAtual}`
+    caption.innerHTML = `Lançamentos de ${mesAtual}`
 }
 
 carregarItens()
@@ -77,7 +77,7 @@ function inserirItemTabela(item, index) {
     let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
 
     tabela.innerHTML = `
-    <td>${item.data}</td>
+    <td>${item.data.split('-').reverse().join('/')}</td>
     <td>${item.descricao}</td>
     <td>${item.categoria}</td>
     <td><p class="valores">R$ ${numValor}</p></td>
@@ -171,4 +171,12 @@ function lancar() {
     fecharJanela()
     carregarItens()
     id = undefined
+}
+
+function ordenarCresData() {
+
+}
+
+function ordenarDecrData() {
+    console.log('decrescente')
 }

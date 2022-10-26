@@ -1,6 +1,4 @@
 //Banco de dados
-const buscarBDcat = () => JSON.parse(localStorage.getItem('categorias') || '[]')
-const bdCategorias = buscarBDcat()
 const buscarBDlanc = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const bdLancamentos = buscarBDlanc()
 
