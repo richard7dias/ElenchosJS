@@ -527,28 +527,6 @@ function menuCategorias(ano) {
         cats.innerHTML = `<option value="${item}}">${item}</option>`
         inputCategoria.appendChild(cats)
     })
-
-    // //Fazer média das categorias
-    // let mediaCategorias = []
-
-    // nomeCategoriasRelatorio.forEach((nome) => {
-    //     let valores = []
-    //     let soma = 0
-    //     categoriasRelatorio.forEach((item) => {
-    //         if (nome == item.categoria) {
-    //             valores.push(Number(item.valor))
-    //         }
-    //     })
-
-    //     for (let i = 0; i < valores.length; i++) {
-    //         soma += valores[i]
-    //     }
-
-    //     let media = soma / valores.length
-    //     mediaCategorias.push(media.toFixed(2))
-    // })
-
-    // console.log(mediaCategorias)
 }
 
 function visualizarRelatorioCat(ano) {
@@ -620,7 +598,7 @@ function visualizarRelatorioCat(ano) {
 
     //Criar Chart
     let canvas = document.createElement('p')
-    canvas.innerHTML = '<div id="div-relatorio-categorias"><canvas id="relatorio-categorias"></canvas></div>'
+    canvas.innerHTML = '<canvas id="relatorio-categorias"></canvas>'
     divResultadosCat.appendChild(canvas)
 
     let ctxRelatorioCat = document.getElementById('relatorio-categorias')
