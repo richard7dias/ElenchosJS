@@ -79,8 +79,6 @@ function inputsEditar() {
     inputSobrenome = document.getElementById('inp-sobrenome')
     inputEmail = document.getElementById('imp-email')
 
-    inputNome.focus()
-
     //Deixar escrito nos inputs as infos atuais
     inputNome.value = logNome
     inputSobrenome.value = logSobrenome

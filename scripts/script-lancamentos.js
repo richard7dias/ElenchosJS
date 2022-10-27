@@ -10,6 +10,7 @@ const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
 let itens = buscarBD()
 let id
+let edit = false
 
 
 carregarItens()
@@ -43,6 +44,7 @@ function inserirItemTabela(item, index) {
 
 function editarItem(index) {
     abrirJanela(true, index)
+    edit = true
 }
 
 function deletarItem(index) {
@@ -55,6 +57,14 @@ function deletarItem(index) {
 }
 
 function abrirJanela(editar = false, index = 0) {
+    if (categoria.value == '') {
+        let novaCat = confirm('Crie uma categoria na aba "Orçamento", para fazer o lançamento de gasto. Deseja ser direcionado para lá?')
+        if (novaCat == true) {
+            window.location.href = 'orcamento.html'
+        }
+    }
+    alerta.innerHTML = ''
+
     lancamentos.setAttribute('style', 'display: block')
     data.focus()
 
@@ -77,6 +87,7 @@ function abrirJanela(editar = false, index = 0) {
         categoria.value = itens[index].categoria
         valor.value = itens[index].valor
         id = index
+        edit = true
     } else {
         data.value = ''
         descricao.value = ''
@@ -120,5 +131,10 @@ function lancar() {
     editarBD()
     carregarItens()
     id = undefined
-    abrirJanela()
+
+    if (edit == true) {
+        fecharJanela()
+    } else {
+        abrirJanela()
+    }
 }
