@@ -314,7 +314,6 @@ tr {
 
 tbody tr td,
 tfoot tr td {
-    vertical-align: text-top;
     padding: 6px;
     max-width: 50px;
 }
