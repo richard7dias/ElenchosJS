@@ -8,9 +8,11 @@ const valor = document.getElementById('input-valor')
 const alerta = document.getElementById('alerta')
 const buscarBD = () => JSON.parse(localStorage.getItem('lancamentos') || '[]')
 const editarBD = () => localStorage.setItem('lancamentos', JSON.stringify(itens))
+const bdCategoriasBuscar = () => JSON.parse(localStorage.getItem('categorias') || '[]')
 let itens = buscarBD()
 let id
 let edit = false
+let categoriasBD
 
 
 carregarItens()
@@ -57,7 +59,9 @@ function deletarItem(index) {
 }
 
 function abrirJanela(editar = false, index = 0) {
-    if (categoria.value == '') {
+    categoriasBD = bdCategoriasBuscar()
+    console.log(categoriasBD == [])
+    if (categoriasBD == '') {
         let novaCat = confirm('Crie uma categoria na aba "Orçamento", para fazer o lançamento de gasto. Deseja ser direcionado para lá?')
         if (novaCat == true) {
             window.location.href = 'orcamento.html'
