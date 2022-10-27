@@ -8,13 +8,6 @@ let logNome
 let logSobrenome
 let logEmail
 let logSenha
-let validSenha = false
-let validConfSenha = false
-let validSenhaAntiga = false
-let msgSenha
-let olho1
-let olho2
-let olho3
 
 //Autenticação de login aberto
 //Caso não haja cadastros no BD
@@ -52,6 +45,13 @@ let inputEmail
 let inputSenhaAntiga
 let inputNovaSenha
 let inputConfSenha
+let validSenha = false
+let validConfSenha = false
+let validSenhaAntiga = false
+let msgSenha
+let olho1
+let olho2
+let olho3
 
 //Escrever dados do usuário na barra lateral
 function dadosLogado() {
@@ -72,6 +72,7 @@ function inputsEditar() {
     <p>Email</p>
     <input class="input" id="imp-email" type="text"></input>
     <button class="botoes" id="btn-editado" onclick="editar()">Editar</button>
+    <button id="btn-deletar" onclick="deletarPerfil()">Deletar Perfil</button>
     `
 
     inputNome = document.getElementById('inp-nome')
@@ -94,7 +95,7 @@ function editar() {
             item.email = inputEmail.value
         }
     })
-    console.log(usuarios)
+
     bdUsuariosEditar()
     carregarUsuário()
     dadosLogado()
@@ -104,6 +105,19 @@ function editar() {
     setTimeout(function () {
         inputsEdicao.innerHTML = ''
     }, 3000);
+}
+
+function deletarPerfil() {
+    let confirmar = confirm(`Deseja apagar o perfil de ${logNome} ${logSobrenome}, com o email ${logEmail}?`)
+    if (confirmar == true) {
+        usuarios.forEach((item, index) => {
+            if (item.logado == true) {
+                usuarios.splice(index, 1)
+                window.location.href = "index.html"
+            }
+        })
+        bdUsuariosEditar()
+    }
 }
 
 function inputsSenha() {

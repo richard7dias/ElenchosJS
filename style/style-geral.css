@@ -121,7 +121,8 @@ body {
     }
 }
 
-#btn-sair {
+#btn-sair,
+#btn-deletar {
     display: inline-block;
     margin-top: 5px;
     padding: 5px 10px;
@@ -131,6 +132,11 @@ body {
     background-color: var(--cor2);
     border-radius: 10px;
     cursor: pointer;
+}
+
+#btn-deletar {
+    margin-top: 100px;
+    width: 100%;
 }
 
 #btn-mud-senha,
@@ -148,11 +154,13 @@ body {
     cursor: pointer;
 }
 
+#btn-deletar:hover,
 #btn-sair:hover {
     background-color: var(--cor5);
     transition: 0.2s;
 }
 
+#btn-deletar:active,
 #btn-sair:active {
     background-color: var(--cor6);
     transition: 0.2s;
