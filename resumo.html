@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="scripts/script-resumo.js" defer></script>
     <script src="scripts/script-geral.js" defer></script>
+    <script src="scripts/script-resumo.js" defer></script>
 </head>
 
 <body>
@@ -26,9 +26,11 @@
     </anside>
     <div class="menu-login-fundo">
         <div id="menu-login">
-            <div id="btn-sair">
-                <a href="index.html">Sair</a>
-            </div>
+            <button id="btn-sair" onclick="logout()">Sair</button>
+            <div id="infos-logado"></div>
+            <button id="btn-editar" onclick="inputsEditar()">Editar Perfil</button>
+            <button id="btn-mud-senha" onclick="inputsSenha()">Trocar Senha</button>
+            <div id="inputs-edicao"></div>
         </div>
     </div>
 

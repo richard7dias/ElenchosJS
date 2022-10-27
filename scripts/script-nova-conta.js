@@ -110,11 +110,12 @@ btnCadastar.addEventListener('click', () => {
             'nome': nome.value,
             'sobrenome': sobrenome.value,
             'email': email.value,
-            'senha': senha.value
+            'senha': senha.value,
+            'logado': true
         })
         localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
 
         window.alert(`${nome.value}, seu cadastro foi feito com sucesso!`)
-        window.location.href = 'index.html'
+        window.location.href = 'resumo.html'
     }
 })

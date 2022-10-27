@@ -122,20 +122,30 @@ body {
 }
 
 #btn-sair {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 30px;
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
     background-color: var(--cor2);
     border-radius: 10px;
     cursor: pointer;
 }
 
-#btn-sair>a {
-    text-decoration: none;
-    font-weight: bold;
+#btn-mud-senha,
+#btn-editar {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding: 5px 10px;
+    width: 49%;
+    border: none;
     color: white;
+    font-weight: bold;
+    background-color: var(--cor2);
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 #btn-sair:hover {
@@ -146,6 +156,84 @@ body {
 #btn-sair:active {
     background-color: var(--cor6);
     transition: 0.2s;
+}
+
+#btn-mud-senha:hover,
+#btn-editar:hover {
+    background-color: var(--cor3);
+    transition: 0.2s;
+}
+
+#btn-mud-senha:active,
+#btn-editar:active {
+    background-color: var(--cor2);
+    transition: 0.2s;
+}
+
+#infos-logado {
+    margin: 15px 0px;
+}
+
+#infos-logado h3,
+#infos-logado p {
+    color: white;
+}
+
+#inputs-edicao {
+    margin-top: 20px;
+}
+
+#inputs-edicao p {
+    color: white;
+}
+
+.input {
+    padding-left: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: none;
+    width: 100%;
+    background-color: var(--cor8);
+}
+
+.senhas {
+    padding-left: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: none;
+    width: 100%;
+    background-color: var(--cor8);
+}
+
+#imp-senha-antiga,
+#inp-nova-senha,
+#inp-conf-senha {
+    background-color: transparent;
+    border: none;
+    width: 87%;
+    border-radius: 5px;
+    margin-bottom: 2px;
+}
+
+#olho1,
+#olho2,
+#olho3 {
+    cursor: pointer;
+}
+
+#msg-senha {
+    display: none;
+    color: white;
+    background-color: var(--cor5);
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 05px 10px;
+    border-radius: 5px;
+}
+
+#btn-editado {
+    width: 100%;
 }
 
 #conteudo {

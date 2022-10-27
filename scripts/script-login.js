@@ -17,31 +17,38 @@ olho.addEventListener('click', () => {
 
 //Entrar
 btnEntrar.addEventListener('click', () => {
-    let listaUsuarios = []
     let validUsuario = { nome: '', sobrenome: '', email: '', senha: '' }
-
+    let listaUsuarios = []
     listaUsuarios = JSON.parse(localStorage.getItem('listaUsuarios'))
+    const bdUsuariosEditar = () => localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
 
-    listaUsuarios.forEach((item) => {
-        if (email.value == item.email && senha.value == item.senha) {
-            validUsuario = {
-                nome: item.nome,
-                sobrenome: item.sobrenome,
-                email: item.email,
-                senha: item.senha
+    //Conferir antes se tem cadastro
+    if (listaUsuarios == null) {
+        msg.innerHTML = 'Usuário não encontrado!'
+    } else {  //Validando
+        listaUsuarios.forEach((item) => {
+            if (email.value == item.email && senha.value == item.senha) {
+                item.logado = true
+                validUsuario = {
+                    nome: item.nome,
+                    sobrenome: item.sobrenome,
+                    email: item.email,
+                    senha: item.senha,
+                }
             }
-        }
-    })
+        })
+        bdUsuariosEditar()
 
-    if (email.value.length < 1 || senha.value.length < 1) {
-        msg.innerHTML = 'Preencha todos os campos!'
-        email.focus()
-    } else if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
-        document.location = 'resumo.html'
-    } else {
-        msg.innerHTML = 'Usuário e senha incorretos'
-        email.setAttribute('style', 'border: 1px solid var(--cor5)')
-        senha.setAttribute('style', 'border: 1px solid var(--cor5)')
-        email.focus()
+        if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
+            document.location = 'resumo.html'
+        } else if (email.value.length < 1 || senha.value.length < 1) {
+            msg.innerHTML = 'Preencha todos os campos!'
+            email.focus()
+        } else {
+            msg.innerHTML = 'Usuário e senha incorretos'
+            email.setAttribute('style', 'border: 1px solid var(--cor5)')
+            senha.setAttribute('style', 'border: 1px solid var(--cor5)')
+            email.focus()
+        }
     }
 })
