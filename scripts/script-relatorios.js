@@ -171,6 +171,8 @@ function janelaMeses() {
 }
 
 function visualizarRelatorioAno() {
+    divResultadosCat.innerHTML = ''
+    tabLancCat.setAttribute('style', 'display: none')
     categoriasPorAno(inputAnoDoAno.value)
     totaisMesPorAno(inputAnoDoAno.value)
     menuCategorias(inputAnoDoAno.value)

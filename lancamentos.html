@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elenchos - Lançar Gasto</title>
     <link rel="stylesheet" href="style/style-geral.css">
-    <link rel="stylesheet" href="style/style-lancar-gasto.css">
+    <link rel="stylesheet" href="style/style-lancamentos.css">
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="scripts/script-lancar-gasto.js" defer></script>
+    <script src="scripts/script-lancamentos.js" defer></script>
     <script src="scripts/script-geral.js" defer></script>
 </head>
 
@@ -36,7 +36,7 @@
         <nav id="barra-nav">
             <a href="resumo.html" class="menu" id="resumo">Resumo</a>
             <a href="orcamento.html" class="menu" id="orcamento">Orçamento</a>
-            <a href="lancar-gasto.html" class="menu" id="lancar-gasto">Lançar Gasto</a>
+            <a href="lancamentos.html" class="menu" id="lancamentos">Lançamentos</a>
             <a href="relatorios.html" class="menu" id="relatorios">Relatórios</a>
         </nav>
 
@@ -44,6 +44,35 @@
             <nav id="btns-nav">
                 <button class="botoes" id="novo-gasto" onclick="abrirJanela()">Novo Gasto</button>
             </nav>
+
+            <div class="lancamento">
+                <div>
+                    <div id="div-titulo">
+                        <h3>Lançar Gasto</h3>
+                    </div>
+                    <button id="btn-fechar" onclick="fecharJanela()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="inputs">
+                    <div>
+                        <p>Data:</p><input type="date" class="input-lancar" id="input-data"></input>
+                    </div>
+                    <div>
+                        <p>Descrição: </p><input type="text" class="input-lancar" id="input-descricao"></input>
+                    </div>
+                    <div>
+                        <p>Categria:</p>
+                        <select class="input-lancar" id="input-categoria">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <p>Valor:</p><input type="number" class="input-lancar" id="input-valor"
+                            placeholder="R$"></input>
+                    </div>
+                </div>
+                <div id="alerta"></div>
+                <button id="btn-lancar" onclick="lancar()">Lançar</button>
+            </div>
 
             <div id="lancados">
                 <table>
@@ -59,27 +88,8 @@
                     </thead>
 
                     <tbody id="tbody-lancados"></tbody>
-                    
-                </table>
-            </div>
 
-            <div class="lancamento-container">
-                <div class="lancamento">
-                    <button id="btn-fechar" onclick="fecharJanela()"><i class="fa-solid fa-xmark"></i></button>
-                    <div>
-                        <h3>Lançar gasto</h3>
-                    </div>
-                    <p>Data: <input type="date" class="input-lancar" id="input-data"></p>
-                    <p>Descrição: <input type="text" class="input-lancar" id="input-descricao"></p>
-                    <p>Categria:
-                        <select class="input-lancar" id="input-categoria">
-                            <option value=""></option>
-                        </select>
-                    </p>
-                    <p>Valor: <input type="number" class="input-lancar" id="input-valor"></p>
-                    <div id="alerta"></div>
-                    <button id="btn-lancar" onclick="lancar()">Lançar</button>
-                </div>
+                </table>
             </div>
         </main>
     </div>

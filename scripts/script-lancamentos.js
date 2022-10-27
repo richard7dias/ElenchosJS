@@ -1,4 +1,4 @@
-const lancamentoContainer = document.querySelector('.lancamento-container')
+const lancamentos = document.querySelector('.lancamento')
 const tbody = document.querySelector('#tbody-lancados')
 const caption = document.querySelector('#caption')
 const data = document.getElementById('input-data')
@@ -12,7 +12,6 @@ let itens = buscarBD()
 let id
 
 
-
 carregarItens()
 function carregarItens() {
     tbody.innerHTML = ''
@@ -22,6 +21,9 @@ function carregarItens() {
 }
 
 function inserirItemTabela(item, index) {
+    //Título
+    caption.innerHTML = 'Lançamentos de Gastos'
+
     //Converter valor de string em número
     let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
 
@@ -53,14 +55,8 @@ function deletarItem(index) {
 }
 
 function abrirJanela(editar = false, index = 0) {
-    lancamentoContainer.classList.add('ativo')
-
-    //Fechar ao clicar fora da janela
-    lancamentoContainer.onclick = e => {
-        if (e.target.className.indexOf('lancamento-container') !== -1) {
-            fecharJanela()
-        }
-    }
+    lancamentos.setAttribute('style', 'display: block')
+    data.focus()
 
     //Colocar todas as categorias no input
     //Buscar as categorias e colocar num array
@@ -87,17 +83,17 @@ function abrirJanela(editar = false, index = 0) {
         categoria.value = ''
         valor.value = ''
     }
-    data.focus()
 }
 
 function fecharJanela() {
     alerta.innerHTML = ''
     categoria.innerHTML = ''
-    lancamentoContainer.classList.remove('ativo')
+    lancamentos.setAttribute('style', 'display: none')
 }
 
 function lancar() {
     if (data.value == '' || descricao.value == '' || categoria.value == '' || valor.value == '') {
+        data.focus()
         alerta.innerHTML = ''
         let msgAlerta = document.createElement('p')
         msgAlerta.innerHTML = 'Preencha todos os campos!'
@@ -122,7 +118,7 @@ function lancar() {
     }
 
     editarBD()
-    fecharJanela()
     carregarItens()
     id = undefined
+    abrirJanela()
 }

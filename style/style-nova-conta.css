@@ -64,26 +64,37 @@ body {
     font-weight: bold;
 }
 
-.input {
+.input, .senhas {
     margin: 5px;
     width: 95%;
     height: 30px;
     padding: 0 10px 0 10px;
     border-radius: 10px;
     border: none;
-    background-color: var(--cor7);
+    background-color: var(--cor8);
     color: var(--cor3);
 }
 
-.senhas-container {
+.senhas {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    padding: 5px 0 5px 5px;
+}
+
+#senha, #conf-senha {
+    width: 90%;
+    height: 110%;
+    padding: 5px 20px 5px 5px;
+    border-radius: 7px;
+    border: none;
+    background-color: transparent;
+    color: var(--cor3);
 }
 
 #olho1,
 #olho2 {
     cursor: pointer;
+    margin: 0 10px 0 5px;
 }
 
 #msg-senha,

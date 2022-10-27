@@ -4,6 +4,8 @@ const msg = document.getElementById('msg')
 const btnEntrar = document.getElementById('entrar')
 let olho = document.getElementById('olho')
 
+email.focus()
+
 //Mostrar senha
 olho.addEventListener('click', () => {
     if (senha.getAttribute('type') == 'password') {
@@ -33,9 +35,9 @@ btnEntrar.addEventListener('click', () => {
 
     if (email.value.length < 1 || senha.value.length < 1) {
         msg.innerHTML = 'Preencha todos os campos!'
+        email.focus()
     } else if (email.value == validUsuario.email && senha.value == validUsuario.senha) {
-        alert(`Olá, ${validUsuario.nome}!`)
-        direcionar()
+        document.location = 'resumo.html'
     } else {
         msg.innerHTML = 'Usuário e senha incorretos'
         email.setAttribute('style', 'border: 1px solid var(--cor5)')
@@ -43,7 +45,3 @@ btnEntrar.addEventListener('click', () => {
         email.focus()
     }
 })
-
-function direcionar() {
-    document.location = 'resumo.html'
-}

@@ -117,6 +117,7 @@ function editarItem(index) {
 
 function abrirJanela(editar = false, index = 0) {
     novCatJanela.classList.add('ativo')
+    nome.focus()
 
     //Fechar ao clicar fora da janela
     novCatJanela.onclick = e => {
@@ -142,6 +143,7 @@ function fecharJanela() {
 
 function lancar() {
     if (nome.value == '' || orcamento.value == '') {
+        nome.focus()
         alerta.innerHTML = ''
         let msgAlerta = document.createElement('p')
         msgAlerta.innerHTML = 'Preencha todos os campos!'

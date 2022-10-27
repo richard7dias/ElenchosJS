@@ -69,6 +69,7 @@ function editarItemSaldo(index) {
 
 function abrirJanelaSaldo(editar = false, index = 0) {
     janelaSaldo.classList.add('ativo')
+    conta.focus()
 
     if (editar) {
         conta.value = itensSaldo[index].conta
@@ -94,6 +95,7 @@ function fecharJanelaSaldo() {
 
 function lancarSaldo() {
     if (conta.value == '' || valorSaldo.value == '') {
+        conta.focus()
         alertaSaldo.innerHTML = ''
         let msgAlertaSaldo = document.createElement('p')
         msgAlertaSaldo.innerHTML = 'Preencha todos os campos!'
@@ -184,6 +186,7 @@ function editarItemGasto(index) {
 
 function abrirJanelaGasto(editar = false, index = 0) {
     janelaGasto.classList.add('ativo')
+    descricao.focus()
 
     if (editar) {
         descricao.value = itensGasto[index].descricao
@@ -209,6 +212,7 @@ function fecharJanelaGasto() {
 
 function lancarGasto() {
     if (descricao.value == '' || valorGasto.value == '') {
+        descricao.focus()
         alertaGasto.innerHTML = ''
         let msgAlertaGasto = document.createElement('p')
         msgAlertaGasto.innerHTML = 'Preencha todos os campos!'

@@ -3,8 +3,7 @@
 }
 
 #entradas-saidas{
-    max-width: 800px;
-    margin: auto;
+    max-width: 900px;
 }
 
 #gastos,
@@ -136,7 +135,7 @@
     padding-left: 5px;
     border-radius: 5px;
     border: none;
-    background-color: var(--cor7);
+    background-color: var(--cor8);
     float: right;
 }
 

@@ -17,6 +17,7 @@ let validSenha = false
 let validConfSenha = false
 const listaUsuarios = JSON.parse(localStorage.getItem('listaUsuarios') || '[]')
 
+nome.focus()
 
 //Visualizar senhas
 olho1.addEventListener('click', () => {
@@ -113,11 +114,7 @@ btnCadastar.addEventListener('click', () => {
         })
         localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
 
-        let confirmar = confirm(`${nome.value}, seu cadastro foi feito com sucesso!`)
-        if (confirmar == true) {
-            window.location.href = 'index.html'
-        } else {
-            window.location.href = 'nova-conta.html'
-        }
+        window.alert(`${nome.value}, seu cadastro foi feito com sucesso!`)
+        window.location.href = 'index.html'
     }
 })
