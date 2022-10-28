@@ -118,6 +118,11 @@
 
     .lancamento {
         margin: auto;
+        margin-top: 20px;
+    }
+
+    #div-titulo {
+        width: 95%;
     }
 
     #div-titulo h3 {
