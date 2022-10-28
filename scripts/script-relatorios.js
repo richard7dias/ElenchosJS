@@ -190,7 +190,7 @@ function categoriasPorAno(ano) {
     let titulo = document.getElementById('titulo-categorias')
     titulo.innerHTML = ''
     const tit = document.createElement('h3')
-    tit.innerHTML = `<h3 class="titulos">Média das Categorias de ${ano}</h3>`
+    tit.innerHTML = `<h3 class="titulos">Média das Categorias em ${ano}</h3>`
     titulo.appendChild(tit)
 
     //Arrays
@@ -274,7 +274,7 @@ function totaisMesPorAno(ano) {
     const titulo = document.getElementById('titulo-por-mes')
     titulo.innerHTML = ''
     const tit = document.createElement('h3')
-    tit.innerHTML = `<h3 class="titulos">Total gastos por mês de ${ano}</h3>`
+    tit.innerHTML = `<h3 class="titulos">Total gastos por mês em ${ano}</h3>`
     titulo.appendChild(tit)
 
     //Variáveis e arrays
@@ -365,7 +365,7 @@ function categoriasPorMes(mes, ano) {
     let titulo = document.getElementById('titulo-categorias')
     titulo.innerHTML = ''
     const tit = document.createElement('h3')
-    tit.innerHTML = `<h3 class="titulos">Categorias de ${mes} de ${ano}</h3>`
+    tit.innerHTML = `<h3 class="titulos">Categorias de ${mes} em ${ano}</h3>`
     titulo.appendChild(tit)
 
     //Trocar nome do mes de strting para número
@@ -470,7 +470,7 @@ function totaisCatPorMes(nomes, soma, mes, ano) {
     const tituloMes = document.getElementById('titulo-por-mes')
     tituloMes.innerHTML = ''
     const titMes = document.createElement('h3')
-    titMes.innerHTML = `<h3 class="titulos">Categorias de ${mes} de ${ano}</h3>`
+    titMes.innerHTML = `<h3 class="titulos">Categorias de ${mes} em ${ano}</h3>`
     tituloMes.appendChild(titMes)
 
     //Criar Chart
@@ -646,7 +646,7 @@ function tabelaCategoria(ano) {
 
     //Escrever título tabela
     captionLancadosCat.innerHTML = ''
-    captionLancadosCat.innerHTML = `Lançamentos de ${inputCategoria.value} de ${ano}`
+    captionLancadosCat.innerHTML = `Lançamentos de ${inputCategoria.value} em ${ano}`
     //Escrever tabela
     itensCres.forEach((item) => {
         let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
@@ -681,7 +681,7 @@ function lancamentosPorMes(mes, ano) {
 
     //Escrever título tabela
     captionLancadosMes.innerHTML = ''
-    captionLancadosMes.innerHTML = `Lançamentos de ${mes} de ${ano}`
+    captionLancadosMes.innerHTML = `Lançamentos de ${mes} em ${ano}`
     //Escrever tabela
     itensCres.forEach((item) => {
         let numValor = Number.parseFloat(item.valor).toFixed(2).replace(".", ",")
