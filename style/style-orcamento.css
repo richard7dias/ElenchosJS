@@ -2,6 +2,10 @@
     background-color: white;
 }
 
+#conteudo {
+    min-width: 500px;
+}
+
 #div-orcamento {
     margin-top: 20px;
     max-width: 800px;

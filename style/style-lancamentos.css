@@ -2,6 +2,10 @@
     background-color: white;
 }
 
+#conteudo {
+    min-width: 500px;
+}
+
 #btn-lancar {
     margin-top: 10px;
     width: 100%;
