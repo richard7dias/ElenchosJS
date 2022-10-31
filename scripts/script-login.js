@@ -17,7 +17,7 @@ olho.addEventListener('click', () => {
 
 //Entrar
 btnEntrar.addEventListener('click', () => {
-    let validUsuario = { nome: '', sobrenome: '', email: '', senha: '' }
+    let validUsuario = []
     let listaUsuarios = []
     listaUsuarios = JSON.parse(localStorage.getItem('listaUsuarios'))
     const bdUsuariosEditar = () => localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios))
